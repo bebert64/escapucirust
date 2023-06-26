@@ -30,7 +30,6 @@ pub(crate) fn html() -> Html {
             </div>
             {tab(&(*open_tab))}
         </div>
-
         </>
     }
 }
