@@ -1,5 +1,6 @@
 mod global_state;
 mod intro;
+mod outro;
 mod start_screen;
 
 use global_state::*;
@@ -26,6 +27,7 @@ fn app() -> Html {
             match game_status {
                 &GameStatus::Intro => html! {<intro::Component />},
                 &GameStatus::Starting => html! {<start_screen::Component />},
+                &GameStatus::Outro => html! {<outro::Component />},
                 _ => html! {<h1>{format!("{game_status:?}")}</h1>},
             }
         }
