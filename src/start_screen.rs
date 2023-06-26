@@ -14,10 +14,10 @@ pub(crate) fn html() -> Html {
     };
 
     html! {
-        <>
-        <header class="start_header">
-        <h1>{"Welcome to Escapucina !"}</h1>
-        <img src="static/maison_red_car.jpg" class="start_coverPageImage" alt="" />
+        <div class = "start">
+        <header>
+            <h1>{"Welcome to Escapucina !"}</h1>
+            <img src="static/maison_red_car.jpg" class="start_coverPageImage" alt="" />
         </header>
 
         <button class="start_startButton" onclick={onclick_start}>{"Démarrer l'aventure..."}</button>
@@ -30,7 +30,7 @@ pub(crate) fn html() -> Html {
             </div>
             {tab(&(*open_tab))}
         </div>
-        </>
+        </div>
     }
 }
 

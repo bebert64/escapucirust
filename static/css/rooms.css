@@ -1,0 +1,37 @@
+.rooms_BlackVeil {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.rooms_CurrentRoom svg {
+    position: absolute;
+    top: 2%;
+    left: 0%;
+    height: 98%;
+    width: 100%;
+}
+
+.rooms_CurrentRoom path {
+    stroke: none;
+    fill: rgba(0, 0, 0, 0);
+}
+
+.rooms_CurrentRoom path:hover {
+    stroke: none;
+    fill: rgba(71, 73, 180, 0.2);
+}
+
+.rooms_CurrentRoom rect {
+    stroke: none;
+    fill: rgba(0, 0, 0, 0);
+}
+
+.rooms_CurrentRoom rect:hover {
+    stroke: none;
+    fill: rgba(71, 73, 180, 0.2);
+}

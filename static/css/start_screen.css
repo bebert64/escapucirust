@@ -1,14 +1,10 @@
-.start_hiddenNarration {
-    visibility: hidden;
+.start {
+  height: 100vh;
 }
 
 .start_tabs {
     width: 50%;
     min-width: 150px;
-    /* margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    margin-left: 50px;*/
     margin: auto; 
     margin-bottom: 50px;
 }
@@ -77,12 +73,11 @@
 
 .start_startButton:hover {
   background-color: rgba(214, 205, 205, 0.877);
-  /* ca marche pas*/
 }
 
 
 .start_coverPageImage {
-  width: 40%;
+  width: auto;
   margin-bottom: 10px;
-/*  height: 40%;*/
+  max-height: 50vh;
 }

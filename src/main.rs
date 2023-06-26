@@ -1,3 +1,4 @@
+mod gaming_board;
 mod global_state;
 mod intro;
 mod outro;
@@ -22,13 +23,13 @@ fn app() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     let game_status = &state.game_status;
     html! {
-        <div class="App">
+        <div>
         {
             match game_status {
                 &GameStatus::Intro => html! {<intro::Component />},
                 &GameStatus::Starting => html! {<start_screen::Component />},
+                &GameStatus::Playing => html! {<gaming_board::Component />},
                 &GameStatus::Outro => html! {<outro::Component />},
-                _ => html! {<h1>{format!("{game_status:?}")}</h1>},
             }
         }
         </div>

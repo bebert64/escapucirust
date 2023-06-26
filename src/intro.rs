@@ -17,12 +17,12 @@ pub(crate) fn html() -> Html {
         })
     };
     html! {
-      <>
+      <div class="Intro">
         <h1>{"Un soir d'été, dans un pays lointain"}</h1>
         {render_page(*page_index)}
         <br />
         <button className="startButton" {onclick}>{"Continuer"}</button>
-      </>
+      </div>
     }
 }
 
@@ -53,10 +53,10 @@ const PAGES: [Page<'static>; 4] = [
 fn render_page(index: usize) -> VNode {
     let page = &PAGES[index];
     html! {
-        <div>
-            <img src={page.img_url} className="imgSequence" height="500" />
+        <div class="Intro_img_and_text" >
+            <img src={page.img_url} class="Intro_img"/>
             <br />
-            <p className="textSequence" >{page.text} </p>
+            <p >{page.text} </p>
         </div>
     }
 }
