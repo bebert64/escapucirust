@@ -1,25 +1,6 @@
+use super::*;
+
 use {std::rc::Rc, yew::prelude::*};
-
-#[derive(Clone, Debug, PartialEq)]
-pub(crate) struct GlobalState {
-    pub(crate) game_status: GameStatus,
-}
-
-impl Default for GlobalState {
-    fn default() -> GlobalState {
-        GlobalState {
-            game_status: GameStatus::Intro,
-        }
-    }
-}
-
-#[derive(Clone, Debug, PartialEq)]
-pub(crate) enum GameStatus {
-    Starting,
-    Intro,
-    Playing,
-    Outro,
-}
 
 pub(crate) enum StateAction {
     Status(GameStatus),

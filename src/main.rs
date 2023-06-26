@@ -1,7 +1,8 @@
 mod global_state;
 mod intro;
+mod start_screen;
 
-use global_state::{GameStatus, GlobalState, StateAction};
+use global_state::*;
 
 use yew::prelude::*;
 
@@ -23,7 +24,8 @@ fn app() -> Html {
         <div class="App">
         {
             match game_status {
-                &GameStatus::Intro => html! {<intro::Intro />},
+                &GameStatus::Intro => html! {<intro::Component />},
+                &GameStatus::Starting => html! {<start_screen::Component />},
                 _ => html! {<h1>{format!("{game_status:?}")}</h1>},
             }
         }
