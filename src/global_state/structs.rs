@@ -6,7 +6,7 @@ pub(crate) struct GlobalState {
 impl Default for GlobalState {
     fn default() -> GlobalState {
         GlobalState {
-            game_status: GameStatus::Starting,
+            game_status: GameStatus::Playing,
         }
     }
 }
