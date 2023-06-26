@@ -1,6 +1,7 @@
 mod gaming_board;
 mod global_state;
 mod intro;
+mod onclick_listener;
 mod outro;
 mod start_screen;
 
