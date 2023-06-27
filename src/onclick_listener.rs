@@ -1,6 +1,7 @@
 macro_rules! add {
-    ($path_id: expr, $create: ident, $handle: ident, $room_ref: ident, $callback: expr) => {
-        let $create = move || {
+    ($path_id: expr, $effect: ident, $room_ref: ident, $callback: expr) => {
+        let room_test = $room_ref.clone();
+        let $effect = move || {
             let element = gloo::utils::document()
                 .get_element_by_id($path_id)
                 .expect("$path_id not found in hall.svg");
@@ -20,10 +21,6 @@ macro_rules! add {
                     ),
                 )
                 .unwrap();
-        };
-
-        let room_test = $room_ref.clone();
-        let $handle = move || {
             let mut custom_listener = None;
 
             if let Some(element) = room_test.cast::<web_sys::HtmlElement>() {
