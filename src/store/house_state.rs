@@ -8,6 +8,7 @@ pub(crate) struct HouseState {
     pub(crate) is_light_on: bool,
 }
 
+#[derive(Clone, Debug)]
 pub(crate) enum HouseStateAction {
     SetLight(BooleanAction),
     SetCurrentRoom(Rooms),

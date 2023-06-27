@@ -28,6 +28,7 @@ impl Default for GlobalState {
     }
 }
 
+#[derive(Clone, Debug)]
 pub(crate) enum GlobalStateAction {
     SetGameStatus(GameStatus),
     SetHouseState(HouseStateAction),

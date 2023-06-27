@@ -8,6 +8,7 @@ use {global_state::GlobalStateAction, macros::boolean_action};
 
 pub(crate) use global_state::GlobalState;
 
+#[derive(Clone, Debug)]
 pub(crate) enum BooleanAction {
     True,
     False,
