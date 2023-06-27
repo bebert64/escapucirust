@@ -1,9 +1,8 @@
 use crate::rooms::Rooms::*;
 
 super::generate_room!(
-    "svgs/hall_face_down.svg",
-    "Enter down",
-    [],
+    "svgs/electrical_panel.svg",
+    "Enter electrical_panel",
     [],
     [HallFaceUp]
 );

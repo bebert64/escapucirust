@@ -26,6 +26,14 @@ pub(crate) fn toggle_light() -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::Toggle))
 }
 
+pub(crate) fn turn_on_light() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::True))
+}
+
+pub(crate) fn turn_off_light() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::False))
+}
+
 pub(crate) fn set_current_room(room: Rooms) -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::SetCurrentRoom(room))
 }

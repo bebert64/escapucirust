@@ -23,7 +23,7 @@ impl Default for GlobalState {
                 current_room: Rooms::HallFaceUp,
                 is_light_on: false,
             },
-            current_text: "Wouhou",
+            current_text: "Initial text",
         }
     }
 }
@@ -35,19 +35,24 @@ pub(crate) enum GlobalStateAction {
     SetCurrentText(&'static str),
 }
 
+#[derive(Clone, Debug)]
+pub(crate) struct GlobalStateActions {
+    pub(crate) actions: Vec<GlobalStateAction>,
+}
+
 impl Reducible for GlobalState {
-    type Action = GlobalStateAction;
+    type Action = GlobalStateActions;
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         use GlobalStateAction::*;
         let mut next_state = (*self).clone();
-        match action {
+        action.actions.into_iter().for_each(|action| match action {
             SetGameStatus(status) => reduce_game_status(status, &mut next_state.game_status),
             SetHouseState(house_action) => {
                 reduce_house_state(house_action, &mut next_state.house_state)
             }
             SetCurrentText(text) => reduce_narration(text, &mut next_state),
-        };
+        });
         next_state.into()
     }
 }

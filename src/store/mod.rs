@@ -6,7 +6,7 @@ pub(crate) mod narration;
 
 use {global_state::GlobalStateAction, macros::boolean_action};
 
-pub(crate) use global_state::GlobalState;
+pub(crate) use global_state::{GlobalState, GlobalStateActions};
 
 #[derive(Clone, Debug)]
 pub(crate) enum BooleanAction {

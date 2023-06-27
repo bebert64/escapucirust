@@ -1,0 +1,224 @@
+ANALYZE "vanilla" : n_distinct item_id 4 921 885
+--------------------------------------------------
+
+
+ANALYZE after SET STATISTIC 10 000 : n_distinct item_id -0.46095574
+-------------------------------------------------------------------
+
+
+Inner join : 788 s vs 3210s previously
+--------------------------------------
+       Reading worten's items' ids from file
+       11648876
+       Starting query with inner join
+       query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[202710159, 202710160, ...]]
+       EXPLAIN (ANALYZE, BUFFERS) output:
+       Gather  (cost=4747436.21..14074827.32 rows=25271138 width=27) (actual time=459898.813..493911.019 rows=22708482 loops=1)
+       Workers Planned: 2
+       Workers Launched: 2
+       ->  Parallel Hash Join  (cost=4746436.21..11546713.52 rows=10529641 width=27) (actual time=455865.435..482282.567 rows=7569494 loops=3)
+              Hash Cond: (item_matching_keys.value_interned_id = interned_strings.id)
+              ->  Parallel Seq Scan on item_matching_keys  (cost=29122.19..6099148.19 rows=10529641 width=12) (actual time=2584.587..58425.833 rows=7569494 loops=3)
+                     Filter: (item_id = ANY ('{202710159,202710160,...}'::integer[]))
+                     Rows Removed by Filter: 121545678
+              ->  Parallel Hash  (cost=2838000.79..2838000.79 rows=102362579 width=19) (actual time=394176.757..394176.758 rows=81791947 loops=3)
+                     Buckets: 65536  Batches: 4096  Memory Usage: 3872kB
+                     ->  Parallel Seq Scan on interned_strings  (cost=0.00..2838000.79 rows=102362579 width=19) (actual time=21.980..308974.784 rows=81791947 loops=3)
+       Planning Time: 6830.639 ms
+       Execution Time: 494990.567 ms
+       Executed real query in 255.601780318s
+       Duration of inner join process : 788 s
+
+
+
+
+Inner join with chunks of 10k : 1075 s vs 920 s previously (with analyzing only on first 5 chunks out of 1164)
+--------------------------------------------------------------------------------------------------------------
+       Reading worten's items' ids from file
+       11648876
+       Starting query with inner join in chunks
+       query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[202710159, 202710160, ...]]
+       EXPLAIN (ANALYZE, BUFFERS) output:
+       Gather  (cost=46709.99..207375.94 rows=21694 width=27) (actual time=2756.614..48803.309 rows=19835 loops=1)
+       Workers Planned: 2
+       Workers Launched: 2
+       ->  Nested Loop  (cost=45709.99..204206.54 rows=9039 width=27) (actual time=2623.205..48588.633 rows=6612 loops=3)
+              ->  Parallel Bitmap Heap Scan on item_matching_keys  (cost=45709.42..127369.11 rows=9039 width=12) (actual time=2509.567..2514.499 rows=6612 loops=3)
+                     Recheck Cond: (item_id = ANY ('{202710159,202710160,...}'::integer[]))
+                     Heap Blocks: exact=77
+                     ->  Bitmap Index Scan on item_matching_keys_item_id_idx  (cost=0.00..45679.00 rows=21694 width=0) (actual time=2514.120..2514.121 rows=19835 loops=1)
+                     Index Cond: (item_id = ANY ('{202710159,202710160,...}'::integer[]))
+              ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..8.50 rows=1 width=19) (actual time=6.968..6.968 rows=1 loops=19835)
+                     Index Cond: (id = item_matching_keys.value_interned_id)
+       Planning Time: 38.231 ms
+       Execution Time: 48806.841 ms
+       Executed real query in 172.713525ms
+       Duration of chunk 0 : 49226 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[205730193, 205730194, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Gather  (cost=46709.99..207375.94 rows=21694 width=27) (actual time=4203.812..17536.806 rows=19183 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              ->  Nested Loop  (cost=45709.99..204206.54 rows=9039 width=27) (actual time=4223.134..17009.524 rows=6394 loops=3)
+                     ->  Parallel Bitmap Heap Scan on item_matching_keys  (cost=45709.42..127369.11 rows=9039 width=12) (actual time=3988.858..3995.110 rows=6394 loops=3)
+                            Recheck Cond: (item_id = ANY ('{205730193,205730194,...}'::integer[]))
+                            Heap Blocks: exact=129
+                            ->  Bitmap Index Scan on item_matching_keys_item_id_idx  (cost=0.00..45679.00 rows=21694 width=0) (actual time=3993.175..3993.175 rows=19183 loops=1)
+                            Index Cond: (item_id = ANY ('{205730193,205730194,...}'::integer[]))
+                     ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..8.50 rows=1 width=19) (actual time=2.035..2.035 rows=1 loops=19183)
+                            Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 4.542 ms
+              Execution Time: 17539.312 ms
+              Executed real query in 149.649708ms
+              Duration of chunk 1 : 17860 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[205722947, 205722948, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Gather  (cost=46709.99..207375.94 rows=21694 width=27) (actual time=25.483..11675.320 rows=19206 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              ->  Nested Loop  (cost=45709.99..204206.54 rows=9039 width=27) (actual time=12.256..11507.182 rows=6402 loops=3)
+                     ->  Parallel Bitmap Heap Scan on item_matching_keys  (cost=45709.42..127369.11 rows=9039 width=12) (actual time=12.239..13.939 rows=6402 loops=3)
+                            Recheck Cond: (item_id = ANY ('{205722947,205722948,...}'::integer[]))
+                            Heap Blocks: exact=118
+                            ->  Bitmap Index Scan on item_matching_keys_item_id_idx  (cost=0.00..45679.00 rows=21694 width=0) (actual time=17.456..17.456 rows=19206 loops=1)
+                            Index Cond: (item_id = ANY ('{205722947,205722948,...}'::integer[]))
+                     ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..8.50 rows=1 width=19) (actual time=1.795..1.795 rows=1 loops=19206)
+                            Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 4.675 ms
+              Execution Time: 11677.886 ms
+              Executed real query in 151.538216ms
+              Duration of chunk 2 : 11997 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[201801402, 201801403, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Gather  (cost=46709.99..207375.94 rows=21694 width=27) (actual time=294.205..3646.302 rows=15023 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              ->  Nested Loop  (cost=45709.99..204206.54 rows=9039 width=27) (actual time=281.485..3418.792 rows=5008 loops=3)
+                     ->  Parallel Bitmap Heap Scan on item_matching_keys  (cost=45709.42..127369.11 rows=9039 width=12) (actual time=279.214..280.407 rows=5008 loops=3)
+                            Recheck Cond: (item_id = ANY ('{201801402,201801403,...}'::integer[]))
+                            Heap Blocks: exact=48
+                            ->  Bitmap Index Scan on item_matching_keys_item_id_idx  (cost=0.00..45679.00 rows=21694 width=0) (actual time=284.160..284.160 rows=15023 loops=1)
+                            Index Cond: (item_id = ANY ('{201801402,201801403,...}'::integer[]))
+                     ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..8.50 rows=1 width=19) (actual time=0.626..0.626 rows=1 loops=15023)
+                            Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 4.568 ms
+              Execution Time: 3648.551 ms
+              Executed real query in 146.402433ms
+              Duration of chunk 3 : 3961 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[201838708, 201838709, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Gather  (cost=46709.99..207375.94 rows=21694 width=27) (actual time=21.949..1367.493 rows=12335 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              ->  Nested Loop  (cost=45709.99..204206.54 rows=9039 width=27) (actual time=8.841..1337.949 rows=4112 loops=3)
+                     ->  Parallel Bitmap Heap Scan on item_matching_keys  (cost=45709.42..127369.11 rows=9039 width=12) (actual time=8.823..9.970 rows=4112 loops=3)
+                            Recheck Cond: (item_id = ANY ('{201838708,201838709,...}'::integer[]))
+                            Heap Blocks: exact=40
+                            ->  Bitmap Index Scan on item_matching_keys_item_id_idx  (cost=0.00..45679.00 rows=21694 width=0) (actual time=13.933..13.934 rows=12335 loops=1)
+                            Index Cond: (item_id = ANY ('{201838708,201838709,...}'::integer[]))
+                     ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..8.50 rows=1 width=19) (actual time=0.323..0.323 rows=1 loops=12335)
+                            Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 4.654 ms
+              Execution Time: 1369.493 ms
+              Executed real query in 142.754455ms
+              Duration of chunk 4 : 1659 ms
+       Duration of inner join in chunk process : 1075 s
+
+
+
+
+
+Inner join with chunks of 100k : 272s vs 1200 s (with analyzing only on first 5 chunks out of 115)
+--------------------------------------------------------------------------------------------------
+       Reading worten's items' ids from file
+       11648876
+       Starting query with inner join in chunks
+       query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[202710159, 202710160, ...]]
+       EXPLAIN (ANALYZE, BUFFERS) output:
+       Nested Loop  (cost=1.14..2804126.39 rows=216941 width=27) (actual time=23.876..10753.454 rows=170366 loops=1)
+       ->  Index Scan using item_matching_keys_item_id_idx on item_matching_keys  (cost=0.57..1110453.55 rows=216941 width=12) (actual time=21.871..464.704 rows=170366 loops=1)
+              Index Cond: (item_id = ANY ('{202710159,202710160,...}'::integer[]))
+       ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..7.81 rows=1 width=19) (actual time=0.060..0.060 rows=1 loops=170366)
+              Index Cond: (id = item_matching_keys.value_interned_id)
+       Planning Time: 77.623 ms
+       Execution Time: 10762.454 ms
+       Executed real query in 977.851316ms
+       Duration of chunk 0 : 12392 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[201827278, 201827279, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Nested Loop  (cost=1.14..2804126.39 rows=216941 width=27) (actual time=18.683..12786.823 rows=196672 loops=1)
+              ->  Index Scan using item_matching_keys_item_id_idx on item_matching_keys  (cost=0.57..1110453.55 rows=216941 width=12) (actual time=17.902..1254.315 rows=196672 loops=1)
+                     Index Cond: (item_id = ANY ('{201827278,201827279,...}'::integer[]))
+              ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..7.81 rows=1 width=19) (actual time=0.058..0.058 rows=1 loops=196672)
+                     Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 42.989 ms
+              Execution Time: 12796.432 ms
+              Executed real query in 1.038158752s
+              Duration of chunk 1 : 14376 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[201554313, 201554314, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Nested Loop  (cost=1.14..2804126.39 rows=216941 width=27) (actual time=18.555..11295.847 rows=194992 loops=1)
+              ->  Index Scan using item_matching_keys_item_id_idx on item_matching_keys  (cost=0.57..1110453.55 rows=216941 width=12) (actual time=18.535..825.926 rows=194992 loops=1)
+                     Index Cond: (item_id = ANY ('{201554313,201554314,...}'::integer[]))
+              ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..7.81 rows=1 width=19) (actual time=0.053..0.053 rows=1 loops=194992)
+                     Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 43.140 ms
+              Execution Time: 11305.736 ms
+              Executed real query in 1.098236929s
+              Duration of chunk 2 : 12933 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[166792481, 166792551, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Nested Loop  (cost=1.14..2804126.39 rows=216941 width=27) (actual time=19.819..4688.693 rows=199788 loops=1)
+              ->  Index Scan using item_matching_keys_item_id_idx on item_matching_keys  (cost=0.57..1110453.55 rows=216941 width=12) (actual time=19.163..280.434 rows=199788 loops=1)
+                     Index Cond: (item_id = ANY ('{166792481,166792551,...}'::integer[]))
+              ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..7.81 rows=1 width=19) (actual time=0.022..0.022 rows=1 loops=199788)
+                     Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 42.662 ms
+              Execution Time: 4697.884 ms
+              Executed real query in 1.020851227s
+              Duration of chunk 3 : 6248 ms
+              query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) WHERE ("item_matching_keys"."item_id" = ANY($1)) -- binds: [[202148832, 202148833, ...]]
+              EXPLAIN (ANALYZE, BUFFERS) output:
+              Nested Loop  (cost=1.14..2804126.39 rows=216941 width=27) (actual time=20.229..7173.894 rows=198916 loops=1)
+              ->  Index Scan using item_matching_keys_item_id_idx on item_matching_keys  (cost=0.57..1110453.55 rows=216941 width=12) (actual time=19.599..881.314 rows=198916 loops=1)
+                     Index Cond: (item_id = ANY ('{202148832,202148833,...}'::integer[]))
+              ->  Index Scan using interned_strings_pkey on interned_strings  (cost=0.57..7.81 rows=1 width=19) (actual time=0.031..0.031 rows=1 loops=198916)
+                     Index Cond: (id = item_matching_keys.value_interned_id)
+              Planning Time: 42.685 ms
+              Execution Time: 7183.372 ms
+              Executed real query in 1.04873985s
+              Duration of chunk 4 : 8760 ms
+       Duration of inner join in chunk process : 272 s
+
+
+
+
+Temp table : 728 s vs 1150 s previously (with terrible caching from analyzing to real query)
+--------------------------------------------------------------------------------------------
+       Reading worten's items' ids from file
+       11648876
+       Starting queries for temp tables
+       Creating temp table
+       Sorting ids
+       Ids sorted in 1635 ms
+       starting batch insertion
+       Batch insertion done in 46 s
+       Elapsed since beginning of temp table process : 48 s
+       Start select query
+       query = SELECT "item_matching_keys"."item_id", "item_matching_keys"."type", "item_matching_keys"."value_interned_id", "interned_strings"."value" FROM ("item_ids_filter" INNER JOIN ("item_matching_keys" INNER JOIN "interned_strings" ON ("item_matching_keys"."value_interned_id" = "interned_strings"."id")) ON ("item_ids_filter"."item_id" = "item_matching_keys"."item_id")) -- binds: []
+       EXPLAIN (ANALYZE, BUFFERS) output:
+       Hash Join  (cost=23037254.65..33683336.72 rows=28514061 width=27) (actual time=600045.987..727134.146 rows=22708482 loops=1)
+       Hash Cond: (item_matching_keys.value_interned_id = interned_strings.id)
+       ->  Hash Join  (cost=14255826.40..23109127.06 rows=28514061 width=12) (actual time=454622.041..532155.761 rows=22708482 loops=1)
+              Hash Cond: (item_ids_filter.item_id = item_matching_keys.item_id)
+              ->  Seq Scan on item_ids_filter  (cost=0.00..182981.20 rows=13143720 width=4) (actual time=0.846..1448.181 rows=11648876 loops=1)
+              ->  Hash  (cost=7522589.40..7522589.40 rows=387350240 width=12) (actual time=454552.058..454552.059 rows=387345517 loops=1)
+                     Buckets: 131072  Batches: 8192  Memory Usage: 3050kB
+                     ->  Seq Scan on item_matching_keys  (cost=0.00..7522589.40 rows=387350240 width=12) (actual time=14.957..89533.721 rows=387345517 loops=1)
+       ->  Hash  (cost=4271076.89..4271076.89 rows=245670189 width=19) (actual time=142105.176..142105.177 rows=245375842 loops=1)
+              Buckets: 65536  Batches: 4096  Memory Usage: 3647kB
+              ->  Seq Scan on interned_strings  (cost=0.00..4271076.89 rows=245670189 width=19) (actual time=0.855..61045.187 rows=245375842 loops=1)
+       Planning Time: 2.264 ms
+       Execution Time: 728137.701 ms
+       Executed real query in 729.021343449s
+       Duration of temp table process : 1506 s
