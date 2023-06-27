@@ -2,20 +2,33 @@ use super::{boolean_action, BooleanAction, GlobalStateAction};
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct HouseState {
+    pub(crate) current_room: Rooms,
     pub(crate) is_light_on: bool,
 }
 
 pub(crate) enum HouseStateAction {
     SetLight(BooleanAction),
+    SetCurrentRoom(Rooms),
 }
 
 pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseState) {
     use {BooleanAction::*, HouseStateAction::*};
     match action {
         SetLight(action) => boolean_action!(action, state.is_light_on),
+        SetCurrentRoom(room) => state.current_room = room,
     };
 }
 
 pub(crate) fn toggle_light() -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::Toggle))
+}
+
+pub(crate) fn set_current_room(room: Rooms) -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::SetCurrentRoom(room))
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+pub(crate) enum Rooms {
+    HallFaceUp,
+    HallFaceDown,
 }

@@ -1,4 +1,5 @@
 mod current_room;
+pub(crate) mod rooms;
 
 use current_room::Component as CurrentRoom;
 

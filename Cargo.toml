@@ -8,6 +8,6 @@
 [dependencies]
 	gloo = "0.8"
 	js-sys = "0.3"
-	# onclick_listener = { path = "onclick_listener" }
+	lazy_static = "1"
 	web-sys = { version = "0.3", features = ["EventTarget", "EventListener"] }
 	yew = { version = "0.20", features = ["csr"] }
