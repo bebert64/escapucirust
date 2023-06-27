@@ -1,6 +1,8 @@
-use crate::{GameStatus, GlobalState, StateAction};
-
-use crate::onclick_listener::add;
+use crate::{
+    add_onclick_listener,
+    store::{game_status::display_start_menu, house_state::toggle_light},
+    GlobalState,
+};
 
 use yew::prelude::*;
 
@@ -12,27 +14,28 @@ pub(crate) fn html() -> Html {
 
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
 
-    add!(
+    add_onclick_listener!(
         "HallFrame",
         hall_frame_effect,
         my_room_ref,
-        state.dispatch(StateAction::Status(GameStatus::Starting))
+        state.dispatch(display_start_menu())
     );
     use_effect(hall_frame_effect);
 
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    add!(
+    add_onclick_listener!(
         "TreeOfHat",
         tree_of_hat_effect,
         my_room_ref,
-        state.dispatch(StateAction::Status(GameStatus::Intro))
+        state.dispatch(toggle_light())
     );
     use_effect(tree_of_hat_effect);
 
+    let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     html! {
         <div id="my_room" ref={my_room_ref} class="rooms_CurrentRoom">
             {parsed}
-       // <div class="rooms_BlackVeil"></div>
+       {if state.house_state.is_light_on {html!{<div class="rooms_BlackVeil"></div>}} else {html!{<></>}}}
         </div>
     }
 }

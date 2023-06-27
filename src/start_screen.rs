@@ -1,4 +1,4 @@
-use crate::{GameStatus, GlobalState, StateAction};
+use crate::{store::game_status::display_intro, GlobalState};
 
 use yew::{prelude::*, virtual_dom::VNode};
 
@@ -6,8 +6,7 @@ use yew::{prelude::*, virtual_dom::VNode};
 pub(crate) fn html() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     let open_tab = use_state(|| Tab::Team);
-    let onclick_start =
-        Callback::from(move |_| state.dispatch(StateAction::Status(GameStatus::Intro)));
+    let onclick_start = Callback::from(move |_| state.dispatch(display_intro()));
     let onclick_tab = |new_tab: Tab| {
         let tab = open_tab.clone();
         Callback::from(move |_| tab.set(new_tab.clone()))

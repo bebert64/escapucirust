@@ -1,4 +1,4 @@
-use crate::{GameStatus, GlobalState, StateAction};
+use crate::{store::game_status::start_playing, GlobalState};
 
 use yew::{prelude::*, virtual_dom::VNode};
 
@@ -12,7 +12,7 @@ pub(crate) fn html() -> Html {
             if *index < PAGES.len() - 1 {
                 index.set(*index + 1)
             } else {
-                state.dispatch(StateAction::Status(GameStatus::Playing))
+                state.dispatch(start_playing())
             }
         })
     };

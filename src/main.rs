@@ -1,11 +1,11 @@
 mod gaming_board;
-mod global_state;
 mod intro;
 mod onclick_listener;
 mod outro;
 mod start_screen;
+mod store;
 
-use global_state::*;
+use {onclick_listener::add as add_onclick_listener, store::GlobalState};
 
 use yew::prelude::*;
 
@@ -21,16 +21,17 @@ fn app_with_context() -> Html {
 
 #[function_component(App)]
 fn app() -> Html {
+    use store::game_status::GameStatus::*;
+
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    let game_status = &state.game_status;
     html! {
         <div>
         {
-            match game_status {
-                &GameStatus::Intro => html! {<intro::Component />},
-                &GameStatus::Starting => html! {<start_screen::Component />},
-                &GameStatus::Playing => html! {<gaming_board::Component />},
-                &GameStatus::Outro => html! {<outro::Component />},
+            match &state.game_status {
+                &Intro => html! {<intro::Component />},
+                &Starting => html! {<start_screen::Component />},
+                &Playing => html! {<gaming_board::Component />},
+                &Outro => html! {<outro::Component />},
             }
         }
         </div>
