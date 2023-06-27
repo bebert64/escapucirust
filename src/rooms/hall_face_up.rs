@@ -1,6 +1,7 @@
+use super::Rooms;
+
 use crate::{
     add_onclick_listener,
-    rooms::Rooms,
     store::{
         game_status::display_start_menu,
         house_state::{set_current_room, toggle_light},
@@ -41,6 +42,15 @@ pub(crate) fn html() -> Html {
         state.dispatch(set_current_room(Rooms::HallFaceDown))
     );
     use_effect(to_hall_face_down_effect);
+
+    let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
+    use_effect_with_deps(
+        {
+            let state = state.clone();
+            move |_| state.clone().dispatch(set_current_text("Enter up"))
+        },
+        state.house_state.current_room.clone(),
+    );
 
     html! {
         <div id="my_room" ref={my_room_ref} class="rooms_CurrentRoom">

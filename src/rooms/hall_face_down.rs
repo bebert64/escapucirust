@@ -1,5 +1,9 @@
+use super::Rooms;
+
 use crate::{
-    add_onclick_listener, rooms::Rooms, store::house_state::set_current_room, GlobalState,
+    add_onclick_listener,
+    store::{house_state::set_current_room, narration::set_current_text},
+    GlobalState,
 };
 
 use yew::prelude::*;
@@ -19,6 +23,15 @@ pub(crate) fn html() -> Html {
         state.dispatch(set_current_room(Rooms::HallFaceUp))
     );
     use_effect(to_hall_face_up_effect);
+
+    let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
+    use_effect_with_deps(
+        {
+            let state = state.clone();
+            move |_| state.clone().dispatch(set_current_text("Enter down"))
+        },
+        state.house_state.current_room.clone(),
+    );
 
     html! {
         <div id="my_room" ref={my_room_ref} class="rooms_CurrentRoom">
