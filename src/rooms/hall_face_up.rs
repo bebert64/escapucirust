@@ -13,8 +13,5 @@ super::generate_room!(
         ("TreeOfHat", || set_current_text("Lights toggled")),
         ("TreeOfHat", toggle_light)
     ],
-    [
-        ("toHallFaceDown", HallFaceDown),
-        ("toPoolFaceLeft", PoolFaceLeft)
-    ]
+    [HallFaceDown, PoolFaceLeft]
 );

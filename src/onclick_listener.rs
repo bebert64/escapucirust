@@ -6,7 +6,7 @@ macro_rules! add {
 
             $(let (path_id, action) = $listeners;
                 let element = gloo::utils::document()
-                    .get_element_by_id(path_id)
+                    .get_element_by_id(&path_id)
                     .expect("$path_id not found in hall.svg");
                 if !element
                     .get_attribute("listener")

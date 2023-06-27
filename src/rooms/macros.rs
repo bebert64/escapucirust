@@ -1,5 +1,5 @@
 macro_rules! generate_room {
-    ($svg: expr, $init_text: expr, [$($listeners: expr),+], [$(($path: expr, $room: expr)),+ ])=> {
+    ($svg: expr, $init_text: expr, [$($listeners: expr),+], [$($room: expr),+ ])=> {
         use crate::{GlobalState};
 
         use yew::prelude::*;
@@ -28,7 +28,7 @@ macro_rules! generate_room {
             use_effect(effect);
 
             let state_clone = state.clone();
-            crate::add_onclick_listener!([$(($path, || crate::store::house_state::set_current_room($room))),+], effect, state_clone, my_room_ref);
+            crate::add_onclick_listener!([$((format!("to{}", stringify!($room)), || crate::store::house_state::set_current_room($room))),+], effect, state_clone, my_room_ref);
             use_effect(effect);
 
             html! {
