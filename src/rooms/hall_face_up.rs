@@ -4,6 +4,7 @@ use crate::{
     store::{
         game_status::display_start_menu,
         house_state::{set_current_room, toggle_light},
+        narration::set_current_text,
     },
     GlobalState,
 };
@@ -26,12 +27,10 @@ pub(crate) fn html() -> Html {
     use_effect(hall_frame_effect);
 
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    add_onclick_listener!(
-        "TreeOfHat",
-        tree_of_hat_effect,
-        my_room_ref,
-        state.dispatch(toggle_light())
-    );
+    add_onclick_listener!("TreeOfHat", tree_of_hat_effect, my_room_ref, {
+        state.dispatch(toggle_light());
+        state.dispatch(set_current_text("Lights toggled"));
+    });
     use_effect(tree_of_hat_effect);
 
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");

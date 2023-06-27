@@ -10,7 +10,7 @@ pub(crate) fn html() -> Html {
         Rooms::HallFaceDown => html! {<hall_face_down::Component />},
     };
     html! {
-        <>
+        <div class="board_Room">
             {room}
             {
                 if state.house_state.is_light_on {
@@ -19,6 +19,6 @@ pub(crate) fn html() -> Html {
                     html!{<></>}
                 }
             }
-        </>
+        </ div>
     }
 }

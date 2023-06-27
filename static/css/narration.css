@@ -1,0 +1,21 @@
+.Narration_textZone {
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    height: 16vh;
+    width: 76vw;
+    background-color: black;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.Narration_text {
+    width: var(--textLenghth);
+    margin: 10 auto;
+    line-height: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.2em;
+    height: fit-content;
+}

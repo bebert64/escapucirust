@@ -14,7 +14,7 @@
     height: 80vh;
     width: 80vw;
     box-sizing: border-box;
-    border: 2px green solid;
+    /* border: 2px green solid; */
 }
 
 .board_Narration {

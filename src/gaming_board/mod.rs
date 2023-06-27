@@ -1,22 +1,21 @@
 mod current_room;
+mod narration;
 
-use current_room::Component as CurrentRoom;
+use {current_room::Component as CurrentRoom, narration::Component as Narration};
 
 use yew::prelude::*;
 
 #[function_component(Component)]
 pub(crate) fn html() -> Html {
     html! {
-      <>
-      <div class="board_Board">
-          // <ItemOpened />
-          <div class="board_Room">
-              <CurrentRoom />
-          </div>
-          // <Inventory />
-          // <Narration />
-          // <Map />
-      </div>
-      </>
+        <>
+        <div class="board_Board">
+            // <ItemOpened />
+            <CurrentRoom />
+            // <Inventory />
+            <Narration />
+            // <Map />
+        </div>
+        </>
     }
 }
