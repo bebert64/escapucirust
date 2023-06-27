@@ -1,8 +1,9 @@
 use crate::{
     add_onclick_listener,
+    rooms::Rooms,
     store::{
         game_status::display_start_menu,
-        house_state::{set_current_room, toggle_light, Rooms},
+        house_state::{set_current_room, toggle_light},
     },
     GlobalState,
 };
@@ -13,7 +14,7 @@ use yew::prelude::*;
 pub(crate) fn html() -> Html {
     let my_room_ref = use_node_ref();
     let svg =
-        yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!("svg/hall_face_up.svg")));
+        yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!("svgs/hall_face_up.svg")));
 
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     add_onclick_listener!(

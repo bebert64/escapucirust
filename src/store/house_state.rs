@@ -1,3 +1,5 @@
+use crate::rooms::Rooms;
+
 use super::{boolean_action, BooleanAction, GlobalStateAction};
 
 #[derive(Clone, Debug, PartialEq)]
@@ -25,10 +27,4 @@ pub(crate) fn toggle_light() -> GlobalStateAction {
 
 pub(crate) fn set_current_room(room: Rooms) -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::SetCurrentRoom(room))
-}
-
-#[derive(Clone, Debug, PartialEq, Eq, Hash)]
-pub(crate) enum Rooms {
-    HallFaceUp,
-    HallFaceDown,
 }

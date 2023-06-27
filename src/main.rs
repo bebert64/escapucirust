@@ -2,6 +2,7 @@ mod gaming_board;
 mod intro;
 mod onclick_listener;
 mod outro;
+mod rooms;
 mod start_screen;
 mod store;
 

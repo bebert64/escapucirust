@@ -1,6 +1,4 @@
-use super::rooms::{hall_face_down, hall_face_up};
-
-use crate::{store::house_state::Rooms, GlobalState};
+use crate::{rooms::*, GlobalState};
 
 use yew::prelude::*;
 

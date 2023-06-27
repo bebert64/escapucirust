@@ -1,5 +1,4 @@
 mod current_room;
-pub(crate) mod rooms;
 
 use current_room::Component as CurrentRoom;
 
@@ -9,15 +8,15 @@ use yew::prelude::*;
 pub(crate) fn html() -> Html {
     html! {
       <>
-        <div class="board_Board">
-            // <ItemOpened />
-            <div class="board_Room">
-            <CurrentRoom />
-            </div>
-            // <Inventory />
-            // <Narration />
-            // <Map />
-        </div>
+      <div class="board_Board">
+          // <ItemOpened />
+          <div class="board_Room">
+              <CurrentRoom />
+          </div>
+          // <Inventory />
+          // <Narration />
+          // <Map />
+      </div>
       </>
     }
 }
