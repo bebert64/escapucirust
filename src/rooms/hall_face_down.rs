@@ -5,5 +5,5 @@ super::generate_room!(
     "Enter down",
     [],
     [],
-    [HallFaceUp]
+    [HallFaceUp, PoolFaceLeft]
 );

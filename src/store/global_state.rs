@@ -20,7 +20,7 @@ impl Default for GlobalState {
         GlobalState {
             game_status: GameStatus::Playing,
             house_state: HouseState {
-                current_room: Rooms::HallFaceUp,
+                current_room: Rooms::KitchenFaceLeft,
                 is_light_on: false,
             },
             current_text: "Initial text",

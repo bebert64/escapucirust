@@ -45,10 +45,9 @@ macro_rules! generate_room {
                                 &::js_sys::Function::new_no_args(
                                     format!(
                                         r#"
-                            var event = new CustomEvent("{}", {{"bubbles": true}});
-                            my_room.dispatchEvent(event);
-                            console.log("fired");
-                        "#,
+                                            var event = new CustomEvent("{}", {{"bubbles": true}});
+                                            my_room.dispatchEvent(event);
+                                        "#,
                                         path_id
                                     )
                                     .as_str(),

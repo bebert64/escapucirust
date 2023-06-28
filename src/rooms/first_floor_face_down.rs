@@ -4,5 +4,6 @@ super::generate_room!(
     "svgs/first_floor_face_down.svg",
     "Enter first_floor_face_down",
     [],
-    [RoomRom1, RoomMart1]
+    [],
+    [RoomGui1, RoomMart1, RoomTiph1, RoomRom1, StairsFaceUp]
 );

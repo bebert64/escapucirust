@@ -1,7 +1,6 @@
 use crate::{
     rooms::Rooms::*,
     store::{
-        game_status::display_start_menu,
         house_state::{turn_off_light, turn_on_light},
         narration::set_current_text,
     },
@@ -19,5 +18,5 @@ super::generate_room!(
             || vec![turn_on_light(), set_current_text("Lights on")]
         }
     })],
-    [HallFaceDown]
+    [HallFaceDown, ElectricalPanel, PoolFaceLeft]
 );
