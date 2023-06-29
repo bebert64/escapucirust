@@ -58,6 +58,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "escapucina"
+version = "0.1.0"
+dependencies = [
+ "gloo",
+ "gloo-events",
+ "js-sys",
+ "web-sys",
+ "yew",
+]
+
+[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -875,17 +886,6 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "yew-macro",
-]
-
-[[package]]
-name = "yew-app"
-version = "0.1.0"
-dependencies = [
- "gloo",
- "gloo-events",
- "js-sys",
- "web-sys",
- "yew",
 ]
 
 [[package]]
