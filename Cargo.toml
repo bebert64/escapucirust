@@ -7,5 +7,6 @@
 	gloo = "0.8"
 	gloo-events = "0.1"
 	js-sys = "0.3"
+	paste = "1"
 	web-sys = { version = "0.3", features = ["EventTarget", "EventListener"] }
 	yew = { version = "0.20", features = ["csr"] }
