@@ -18,9 +18,9 @@ pub(crate) struct GlobalState {
 impl Default for GlobalState {
     fn default() -> GlobalState {
         GlobalState {
-            game_status: GameStatus::Playing,
+            game_status: GameStatus::Starting,
             house_state: HouseState {
-                current_room: Rooms::KitchenFaceLeft,
+                current_room: Rooms::HallFaceUp,
                 is_light_on: false,
             },
             current_text: "Initial text",

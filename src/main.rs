@@ -1,12 +1,13 @@
 mod gaming_board;
 mod intro;
+mod items;
 mod onclick_listener;
 mod outro;
 mod rooms;
 mod start_screen;
 mod store;
 
-use {onclick_listener::add as add_onclick_listener, store::GlobalState};
+use store::GlobalState;
 
 use yew::prelude::*;
 
