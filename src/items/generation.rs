@@ -4,13 +4,14 @@ macro_rules! generate_items {
         $($unique_item: ident);* $(;)?
     ) => {
         paste! {
-            #[derive(PartialEq, Eq, Hash)]
-            enum ItemId {
+            #[derive(PartialEq, Eq, Hash, Clone, Copy, Debug)]
+            pub(crate) enum ItemId {
                 $($([<$family $id>]),*),*,
                 $($unique_item),*,
             }
 
-            enum ItemFamily {
+            #[derive(Clone, PartialEq,Debug)]
+            pub(crate) enum ItemFamily {
                 $($family),*,
                 $($unique_item),*,
             }

@@ -1,17 +1,22 @@
 use super::{
     game_status::{reduce_game_status, GameStatus},
     house_state::{reduce_house_state, HouseState, HouseStateAction},
+    items::{reduce_items_state, ItemsState, ItemsStateAction},
     narration::reduce_narration,
 };
 
 use crate::rooms::Rooms;
 
-use {std::rc::Rc, yew::prelude::*};
+use {
+    std::{collections::HashSet, rc::Rc},
+    yew::prelude::*,
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct GlobalState {
     pub(crate) game_status: GameStatus,
     pub(crate) house_state: HouseState,
+    pub(crate) items_state: ItemsState,
     pub(crate) current_text: &'static str,
 }
 
@@ -23,6 +28,12 @@ impl Default for GlobalState {
                 current_room: Rooms::HallFaceUp,
                 is_light_on: false,
             },
+            items_state: ItemsState {
+                family_opened: None,
+                family_selected: None,
+                items_found: HashSet::new(),
+                items_in_inventory: HashSet::new(),
+            },
             current_text: "Initial text",
         }
     }
@@ -33,6 +44,7 @@ pub(crate) enum GlobalStateAction {
     SetGameStatus(GameStatus),
     SetHouseState(HouseStateAction),
     SetCurrentText(&'static str),
+    SetItemsState(ItemsStateAction),
 }
 
 #[derive(Clone, Debug)]
@@ -52,6 +64,9 @@ impl Reducible for GlobalState {
                 reduce_house_state(house_action, &mut next_state.house_state)
             }
             SetCurrentText(text) => reduce_narration(text, &mut next_state),
+            SetItemsState(items_action) => {
+                reduce_items_state(items_action, &mut next_state.items_state)
+            }
         });
         next_state.into()
     }

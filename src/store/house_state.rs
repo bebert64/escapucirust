@@ -1,6 +1,6 @@
-use crate::rooms::Rooms;
-
 use super::{boolean_action, BooleanAction, GlobalStateAction};
+
+use crate::rooms::Rooms;
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct HouseState {

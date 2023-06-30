@@ -2,6 +2,7 @@ mod boolean_action;
 pub(crate) mod game_status;
 pub(crate) mod global_state;
 pub(crate) mod house_state;
+pub(crate) mod items;
 pub(crate) mod narration;
 
 use {boolean_action::boolean_action, global_state::GlobalStateAction};
