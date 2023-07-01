@@ -31,9 +31,9 @@ pub(crate) fn html() -> Html {
             {room}
             {
                 if state.house.is_light_on {
-                    html!{<div class="rooms_BlackVeil"></div>}
-                } else {
                     html!{<></>}
+                } else {
+                    html!{<div class="rooms_BlackVeil"></div>}
                 }
             }
         </ div>
