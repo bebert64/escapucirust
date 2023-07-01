@@ -10,31 +10,25 @@ macro_rules! generate_items {
                 $($unique_item),*,
             }
 
-            #[derive(Clone, PartialEq,Debug)]
+            #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
             pub(crate) enum ItemFamily {
                 $($family),*,
                 $($unique_item),*,
             }
 
             lazy_static! {
-                static ref ITEMS: ::std::collections::HashMap<ItemId, Item> = {
+                pub(crate) static ref FAMILIES_BY_ID: ::std::collections::HashMap<ItemId, ItemFamily> = {
                     let mut map = ::std::collections::HashMap::new();
                     $($(
                         map.insert(
                             ItemId::[<$family $id>],
-                            Item {
-                                family: ItemFamily::$family,
-                                id: ItemId::[<$family $id>],
-                            }
+                            ItemFamily::$family,
                         );
                     )*)*
                     $(
                         map.insert(
                             ItemId::$unique_item,
-                            Item {
-                                family: ItemFamily::$unique_item,
-                                id: ItemId::$unique_item,
-                            }
+                            ItemFamily::$unique_item,
                         );
                     )*
                     map

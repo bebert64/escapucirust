@@ -6,6 +6,7 @@
 [dependencies]
 	gloo = "0.8"
 	gloo-events = "0.1"
+	iter_tools = "0.1"
 	js-sys = "0.3"
 	lazy_static = "1"
 	paste = "1"

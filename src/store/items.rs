@@ -1,8 +1,11 @@
 use super::GlobalStateAction;
 
-use crate::items::{ItemFamily, ItemId};
+use crate::items::{ItemFamily, ItemId, FAMILIES_BY_ID};
 
-use std::collections::HashSet;
+use {
+    iter_tools::Itertools,
+    std::collections::{HashMap, HashSet},
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct ItemsState {
@@ -41,6 +44,27 @@ pub(super) fn reduce_items_state(action: ItemsStateAction, state: &mut ItemsStat
             state.items_in_inventory.remove(&item_id);
         }
     };
+}
+
+impl ItemsState {
+    pub(crate) fn inventory(self: &Self) -> Vec<(ItemFamily, Vec<ItemId>)> {
+        let mut inventory = self
+            .items_in_inventory
+            .iter()
+            .map(|item_id| {
+                (
+                    *FAMILIES_BY_ID
+                        .get(item_id)
+                        .expect("All items should in map"),
+                    *item_id,
+                )
+            })
+            .into_group_map()
+            .into_iter()
+            .collect::<Vec<_>>();
+        inventory.sort_by_key(|(family, _)| format!("{family:?}"));
+        inventory
+    }
 }
 
 pub(crate) fn open_family(family: ItemFamily) -> GlobalStateAction {

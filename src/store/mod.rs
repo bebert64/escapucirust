@@ -15,3 +15,13 @@ pub(crate) enum BooleanAction {
     False,
     Toggle,
 }
+
+macro_rules! actions {
+    ($($action: expr),+) => {
+        crate::store::global_state::GlobalStateActions {
+            actions: vec![$($action),+]
+        }
+    }
+}
+
+pub(crate) use actions;

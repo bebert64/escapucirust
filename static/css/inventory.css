@@ -1,0 +1,54 @@
+.board_Inventory table {
+    position: absolute;
+    top: 3vh;
+    left: 0.5vw;
+    height: 64vh ;
+}
+
+.board_Inventory td {
+    position: relative;
+    width: 8vw;
+    height: 7vh;
+    border: rgba(123, 68, 11, 0.918) solid 5px;
+    border-style: groove;
+    padding: 3px;
+    margin: 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+td.itemUnselected {
+    border: rgb(168, 168, 168) solid 3px;
+}
+
+td.itemSelected {
+    border: rgba(13, 11, 139, 0.918) solid 3px;
+}
+
+.itemImage {
+    height: 100%;
+    width: 100%;
+}
+
+.itemImage svg {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+.OpenItemButton {
+    position: absolute;
+    top: 72vh;
+    left: 7vw;
+    width: 6vw;
+}
+
+.quantity {
+    position: absolute;
+    top: 60%;
+    left: 90%;
+    color: black;
+    font-size: large;
+}

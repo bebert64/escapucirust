@@ -30,9 +30,17 @@ impl Default for GlobalState {
             },
             items: ItemsState {
                 family_opened: None,
-                family_selected: None,
+                family_selected: Some(crate::items::ItemFamily::Saw),
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::new(),
+                // items_in_inventory: HashSet::new(),
+                items_in_inventory: {
+                    use crate::items::ItemId::*;
+                    let mut i = HashSet::new();
+                    i.insert(ElectricalFuse1);
+                    i.insert(ElectricalFuse3);
+                    i.insert(Saw);
+                    i
+                },
             },
             current_text: "Initial text",
         }
