@@ -1,5 +1,5 @@
 macro_rules! generate_room {
-    ($svg: expr, $init_text: expr, [$($room: expr),* ], [$($listener: expr),* $(,)?], $use_effect: expr) => {
+    ($svg: expr, $init_text: expr, [$($room: expr),* ], [$state: ident, $($listener: expr),* $(,)?], $use_effect: expr) => {
         use crate::{GlobalState, store::GlobalStateActions};
 
         use yew::prelude::*;
@@ -10,10 +10,10 @@ macro_rules! generate_room {
             let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!($svg)));
 
             // Set initial text
-            let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
+            let $state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
             use_effect_with_deps(
                 {
-                    let state = state.clone();
+                    let state = $state.clone();
                     move |_| {
                         state
                             .clone()
@@ -24,13 +24,13 @@ macro_rules! generate_room {
                             )
                     }
                 },
-                state.house.current_room.clone(),
+                $state.house.current_room.clone(),
             );
 
             // Set listeners for navigation between rooms
             $({
                 let room_ref = room_ref.clone();
-                let state_clone = state.clone();
+                let state = $state.clone();
                 let create_actions = || GlobalStateActions {
                     actions: vec![crate::store::house::set_current_room($room)]
                 };
@@ -65,7 +65,7 @@ macro_rules! generate_room {
                     if let Some(element) = room_ref.cast::<web_sys::HtmlElement>() {
                         let on_custom_event =
                             Callback::from({
-                                move |_| state_clone.dispatch(create_actions())
+                                move |_| state.dispatch(create_actions())
                             });
                         let listener = gloo::events::EventListener::new(&element, path_id, move |e| {
                             on_custom_event.emit(e.clone())
@@ -83,7 +83,7 @@ macro_rules! generate_room {
             $({
                 let room_ref = room_ref.clone();
                 let (path_id, create_actions) = $listener;
-                let state = state.clone();
+                let state = $state.clone();
                 let effect = move || {
                     let element = gloo::utils::document()
                         .get_element_by_id(&path_id)
@@ -139,10 +139,17 @@ macro_rules! generate_room {
         }
     };
 
+    ($svg: expr, $init_text: expr, [$($room: expr),* ], [$state: ident, $($listener: expr),* $(,)?] $(,)?) => {
+        crate::rooms::generate_room!($svg, $init_text, [$($room),*], [$state, $($listener),*], ());
+    };
+
+    ($svg: expr, $init_text: expr, [$($room: expr),* ], [$($listener: expr),* $(,)?], $use_effect: expr) => {
+        crate::rooms::generate_room!($svg, $init_text, [$($room),*], [state, $($listener),*], $use_effect);
+    };
 
     ($svg: expr, $init_text: expr, [$($room: expr),* ], [$($listener: expr),* $(,)?] $(,)?) => {
-        crate::rooms::generate_room!($svg, $init_text, [$($room),*], [$($listener),*], ());
-    }
+        crate::rooms::generate_room!($svg, $init_text, [$($room),*], [state, $($listener),*], ());
+    };
 }
 
 pub(crate) use generate_room;
