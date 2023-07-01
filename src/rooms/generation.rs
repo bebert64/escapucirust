@@ -1,5 +1,5 @@
 macro_rules! generate_room {
-    ($svg: expr, $init_text: expr, [$($listener: expr),* $(,)?], [$($room: expr),* ])=> {
+    ($svg: expr, $init_text: expr, [$($listener: expr),* $(,)?], [$($room: expr),* ], $use_effect: expr) => {
         use crate::{GlobalState, store::GlobalStateActions};
 
         use yew::prelude::*;
@@ -131,6 +131,7 @@ macro_rules! generate_room {
                 use_effect(effect);
             })*
 
+            $use_effect;
 
             html! {
                 <div id="my_room" ref={room_ref} class="rooms_CurrentRoom">
@@ -139,6 +140,11 @@ macro_rules! generate_room {
             }
         }
     };
+
+
+    ($svg: expr, $init_text: expr, [$($listener: expr),* $(,)?], [$($room: expr),* ] $(,)?) => {
+        crate::rooms::generate_room!($svg, $init_text, [$($listener),*], [$($room),*], ());
+    }
 }
 
 pub(crate) use generate_room;

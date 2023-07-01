@@ -3,7 +3,7 @@ use crate::{
     rooms::Rooms::*,
     store::{
         actions,
-        house::{turn_off_light, turn_on_light},
+        house::{set_current_room, turn_off_light, turn_on_light},
         items::add_item_to_inventory,
         narration::set_current_text,
     },
@@ -25,6 +25,14 @@ super::generate_room!(
             set_current_text("Hall of frame"),
             add_item_to_inventory(Saw)
         ]),
+        ("toPoolFaceLeft", {
+            let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
+            if state.house.is_light_on {
+                || actions![set_current_room(PoolFaceLeft)]
+            } else {
+                || actions![set_current_text("Nope")]
+            }
+        })
     ],
-    [HallFaceDown, ElectricalPanel, PoolFaceLeft]
+    [HallFaceDown, ElectricalPanel]
 );

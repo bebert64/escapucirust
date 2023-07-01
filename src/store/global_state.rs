@@ -29,7 +29,7 @@ impl Default for GlobalState {
                 is_light_on: false,
             },
             items: ItemsState {
-                family_opened: Some(crate::items::ItemFamily::Saw),
+                family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
                 items_in_inventory: HashSet::new(),
