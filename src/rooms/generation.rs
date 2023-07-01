@@ -9,7 +9,7 @@ macro_rules! generate_room {
             let room_ref = use_node_ref();
             let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!($svg)));
 
-            // Init
+            // Set initial text
             let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
             use_effect_with_deps(
                 {
@@ -27,6 +27,7 @@ macro_rules! generate_room {
                 state.house.current_room.clone(),
             );
 
+            // Set listeners for a single action
             $({
                 let room_ref = room_ref.clone();
                 let (path_id, create_action) = $listener_unit;
@@ -78,7 +79,7 @@ macro_rules! generate_room {
                 use_effect(effect);
             })*
 
-
+            // Set listeners for multiple or complex actions
             $({
                 let room_ref = room_ref.clone();
                 let (path_id, create_actions_list) = $listener_list;
@@ -131,6 +132,7 @@ macro_rules! generate_room {
                 use_effect(effect);
             })*
 
+            // Set listeners for navigation between rooms
             $({
                 let room_ref = room_ref.clone();
                 let state_clone = state.clone();
