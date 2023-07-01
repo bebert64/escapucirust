@@ -1,10 +1,13 @@
 mod current_room;
 mod inventory;
-mod item_opened;
 mod map;
 mod narration;
+mod opened_item;
 
-use {current_room::CurrentRoom, inventory::Inventory, map::Map, narration::Narration};
+use {
+    current_room::CurrentRoom, inventory::Inventory, map::Map, narration::Narration,
+    opened_item::OpenedItem,
+};
 
 use yew::prelude::*;
 
@@ -13,7 +16,7 @@ pub(crate) fn html() -> Html {
     html! {
         <>
         <div class="board_Board">
-            // <ItemOpened />
+            <OpenedItem />
             <CurrentRoom />
             <Inventory />
             <Narration />

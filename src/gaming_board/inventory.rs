@@ -2,7 +2,7 @@ use crate::{
     items::{ItemComponent, ItemFamily},
     store::{
         actions,
-        items::{select_family, unselect_family},
+        items::{open_family, select_family, unselect_family},
     },
     GlobalState,
 };
@@ -66,12 +66,21 @@ pub(crate) fn html() -> Html {
         rows.push(html! {<tr>{cells}</tr>});
     }
 
+    let on_open_click = {
+        if let Some(family) = state.items.family_selected {
+            let state = state.clone();
+            Callback::from(move |_| state.dispatch(actions![open_family(family)]))
+        } else {
+            Callback::from(|_| ())
+        }
+    };
+
     html! {
         <div class="board_Inventory">
             <table>
                 <tbody>{rows}</tbody>
             </table>
-            <button class="OpenItemButton">
+            <button class="OpenItemButton" onclick={on_open_click}>
                 {"Ouvrir"}
             </button>
         </ div>

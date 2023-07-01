@@ -1,5 +1,5 @@
 macro_rules! generate_room {
-    ($svg: expr, $init_text: expr, [$($listener: expr),*], [$($room: expr),* ])=> {
+    ($svg: expr, $init_text: expr, [$($listener: expr),* $(,)?], [$($room: expr),* ])=> {
         use crate::{GlobalState, store::GlobalStateActions};
 
         use yew::prelude::*;
