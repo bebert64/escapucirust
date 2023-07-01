@@ -3,8 +3,8 @@ use crate::rooms::Rooms::*;
 super::generate_room!(
     "svgs/stairs_face_up.svg",
     "Enter stairs_face_up",
-    [],
     [PoolFaceLeft, KitchenFaceLeft, FirstFloorFaceDown],
+    [],
     {
         let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
         let effect = if state.items.items_found.contains(&crate::items::ItemId::Saw) {

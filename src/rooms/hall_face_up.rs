@@ -12,6 +12,7 @@ use crate::{
 super::generate_room!(
     "svgs/hall_face_up.svg",
     "Enter up & p",
+    [HallFaceDown, ElectricalPanel],
     [
         ("TreeOfHat", {
             let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
@@ -34,5 +35,4 @@ super::generate_room!(
             }
         })
     ],
-    [HallFaceDown, ElectricalPanel]
 );
