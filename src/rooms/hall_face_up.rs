@@ -58,7 +58,6 @@ super::generate_room!(
             }
         }),
         ("toElectricalPanel", {
-            let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
             if state.house.is_light_on {
                 || {
                     actions![set_current_text(

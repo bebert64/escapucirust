@@ -52,4 +52,25 @@ super::generate_room!(
             }
         })
     ],
+    {
+        use_effect(if state.house.is_table_cut {
+            || {
+                let table_cut = gloo::utils::document()
+                    .get_element_by_id("TableCut")
+                    .expect("TableCut not found in svg");
+                table_cut
+                    .set_attribute("class", "")
+                    .expect("Problem setting table_cut's attribute");
+            }
+        } else {
+            || {
+                let table_cut = gloo::utils::document()
+                    .get_element_by_id("TableCut")
+                    .expect("TableCut not found in svg");
+                table_cut
+                    .set_attribute("class", "hidden")
+                    .expect("Problem setting table_cut's attribute");
+            }
+        });
+    }
 );

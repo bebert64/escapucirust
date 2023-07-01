@@ -7,6 +7,7 @@ pub(crate) struct HouseState {
     pub(crate) current_room: Rooms,
     pub(crate) is_light_on: bool,
     pub(crate) is_table_cut: bool,
+    pub(crate) is_handle_on_exit_door: bool,
 }
 
 #[derive(Clone, Debug)]

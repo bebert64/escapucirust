@@ -28,6 +28,7 @@ impl Default for GlobalState {
                 current_room: Rooms::HallFaceUp,
                 is_light_on: false,
                 is_table_cut: false,
+                is_handle_on_exit_door: false,
             },
             items: ItemsState {
                 family_opened: None,
