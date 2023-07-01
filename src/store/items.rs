@@ -2,10 +2,7 @@ use super::GlobalStateAction;
 
 use crate::items::{ItemFamily, ItemId, FAMILIES_BY_ID};
 
-use {
-    iter_tools::Itertools,
-    std::collections::{HashMap, HashSet},
-};
+use {iter_tools::Itertools, std::collections::HashSet};
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct ItemsState {

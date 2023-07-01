@@ -12,7 +12,9 @@ super::generate_room!(
                 let board = gloo::utils::document()
                     .get_element_by_id("Board")
                     .expect("Board not found in svg");
-                board.set_attribute("class", "hidden");
+                board
+                    .set_attribute("class", "hidden")
+                    .expect("Problem setting board's attribute");
             }
         } else {
             || ()

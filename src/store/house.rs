@@ -1,4 +1,4 @@
-use super::{BooleanAction, GlobalStateAction};
+use super::GlobalStateAction;
 
 use crate::rooms::Rooms;
 

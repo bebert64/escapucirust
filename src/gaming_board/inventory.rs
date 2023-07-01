@@ -1,5 +1,5 @@
 use crate::{
-    items::{ItemComponent, ItemFamily},
+    items::ItemComponent,
     store::{
         actions,
         items::{open_family, select_family, unselect_family},
@@ -19,9 +19,9 @@ pub(crate) fn html() -> Html {
     let mut iventory_iter = inventory.into_iter();
 
     let mut rows = Vec::new();
-    for row in 0..ROWS_QTY {
+    for _row in 0..ROWS_QTY {
         let mut cells = Vec::new();
-        for col in 0..COLUMNS_QTY {
+        for _col in 0..COLUMNS_QTY {
             let mut td_class = "";
             let cell = if let Some((family, items)) = iventory_iter.next() {
                 let is_family_selected = state

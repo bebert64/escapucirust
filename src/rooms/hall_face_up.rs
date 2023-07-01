@@ -2,10 +2,7 @@ use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
     store::{
-        actions,
-        house::{set_current_room, turn_light_on},
-        items::add_item_to_inventory,
-        narration::set_current_text,
+        actions, house::set_current_room, items::add_item_to_inventory, narration::set_current_text,
     },
 };
 

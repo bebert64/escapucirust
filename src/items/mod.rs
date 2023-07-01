@@ -2,8 +2,6 @@ mod generation;
 
 use generation::generate_items;
 
-use crate::rooms::*;
-
 use {lazy_static::lazy_static, paste::paste, yew::prelude::*};
 
 generate_items! {

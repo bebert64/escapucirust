@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 mod gaming_board;
 mod intro;
 mod items;

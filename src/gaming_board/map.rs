@@ -36,7 +36,9 @@ pub(crate) fn html() -> Html {
         let current_room = gloo::utils::document()
             .get_element_by_id(&current_room_map_id)
             .expect(&format!("{} not found in svg", &current_room_map_id));
-        current_room.set_attribute("class", "board_MapCurrentRoom");
+        current_room
+            .set_attribute("class", "board_MapCurrentRoom")
+            .expect("Problem setting current_room's attribute");
     });
 
     html! {
@@ -50,7 +52,9 @@ fn remove_class_from_descendants(elem: web_sys::Element) {
     let children = elem.children();
     for i in 0..children.length() {
         if let Some(child) = children.item(i) {
-            child.set_attribute("class", "");
+            child
+                .set_attribute("class", "")
+                .expect("Problem setting child's attribute");
             remove_class_from_descendants(child);
         };
     }
