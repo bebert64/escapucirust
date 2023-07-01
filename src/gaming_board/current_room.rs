@@ -6,7 +6,7 @@ use yew::prelude::*;
 pub(crate) fn html() -> Html {
     use Rooms::*;
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    let room = match state.house_state.current_room {
+    let room = match state.house.current_room {
         DiningRoomFaceUp => html! {<dining_room_face_up::Room />},
         Drawers => html! {<drawers::Room />},
         ElectricalPanel => html! {<electrical_panel::Room />},
@@ -30,7 +30,7 @@ pub(crate) fn html() -> Html {
         <div class="board_Room">
             {room}
             {
-                if state.house_state.is_light_on {
+                if state.house.is_light_on {
                     html!{<div class="rooms_BlackVeil"></div>}
                 } else {
                     html!{<></>}

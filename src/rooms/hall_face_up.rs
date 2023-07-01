@@ -12,7 +12,7 @@ super::generate_room!(
     [("HallFrame", || set_current_text("Hall of frame"))],
     [("TreeOfHat", {
         let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-        if state.house_state.is_light_on {
+        if state.house.is_light_on {
             || vec![turn_off_light(), set_current_text("Lights off")]
         } else {
             || vec![turn_on_light(), set_current_text("Lights on")]

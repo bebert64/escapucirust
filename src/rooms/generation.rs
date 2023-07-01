@@ -24,7 +24,7 @@ macro_rules! generate_room {
                             )
                     }
                 },
-                state.house_state.current_room.clone(),
+                state.house.current_room.clone(),
             );
 
             $({
