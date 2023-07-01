@@ -10,7 +10,7 @@ use crate::{
 use yew::prelude::*;
 
 const COLUMNS_QTY: usize = 2;
-const ROWS_QTY: usize = 6;
+const ROWS_QTY: usize = 4;
 
 #[function_component(Inventory)]
 pub(crate) fn html() -> Html {
