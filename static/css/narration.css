@@ -11,11 +11,8 @@
 }
 
 .Narration_text {
-    width: var(--textLenghth);
-    margin: 10 auto;
     line-height: 200%;
-    white-space: nowrap;
-    overflow: hidden;
     font-size: 1.2em;
     height: fit-content;
+    width: 80%;
 }

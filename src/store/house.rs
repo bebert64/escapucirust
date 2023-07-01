@@ -1,4 +1,4 @@
-use super::{boolean_action, BooleanAction, GlobalStateAction};
+use super::{BooleanAction, GlobalStateAction};
 
 use crate::rooms::Rooms;
 
@@ -6,34 +6,33 @@ use crate::rooms::Rooms;
 pub(crate) struct HouseState {
     pub(crate) current_room: Rooms,
     pub(crate) is_light_on: bool,
+    pub(crate) is_table_cut: bool,
 }
 
 #[derive(Clone, Debug)]
 pub(crate) enum HouseStateAction {
-    SetLight(BooleanAction),
+    TurnLightOn,
     SetCurrentRoom(Rooms),
+    CutTable,
 }
 
 pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseState) {
-    use {BooleanAction::*, HouseStateAction::*};
+    use HouseStateAction::*;
     match action {
-        SetLight(action) => boolean_action!(action, state.is_light_on),
+        TurnLightOn => state.is_light_on = true,
         SetCurrentRoom(room) => state.current_room = room,
+        CutTable => state.is_table_cut = true,
     };
 }
 
-pub(crate) fn toggle_light() -> GlobalStateAction {
-    GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::Toggle))
-}
-
-pub(crate) fn turn_on_light() -> GlobalStateAction {
-    GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::True))
-}
-
-pub(crate) fn turn_off_light() -> GlobalStateAction {
-    GlobalStateAction::SetHouseState(HouseStateAction::SetLight(BooleanAction::False))
+pub(crate) fn turn_light_on() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::TurnLightOn)
 }
 
 pub(crate) fn set_current_room(room: Rooms) -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::SetCurrentRoom(room))
+}
+
+pub(crate) fn cut_table() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::CutTable)
 }

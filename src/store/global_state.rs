@@ -27,6 +27,7 @@ impl Default for GlobalState {
             house: HouseState {
                 current_room: Rooms::HallFaceUp,
                 is_light_on: false,
+                is_table_cut: false,
             },
             items: ItemsState {
                 family_opened: None,

@@ -1,6 +1,6 @@
 use crate::{
-    items::ItemComponent,
-    store::{actions, items::close_family},
+    items::{ItemComponent, ItemFamily::*},
+    store::{actions, items::close_family, narration::set_current_text},
     GlobalState,
 };
 
@@ -11,6 +11,12 @@ pub(crate) fn html() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
 
     if let Some(family) = state.items.family_opened {
+        state.dispatch(actions![set_current_text(match family {
+            ElectricalFuse => "Un fusible, il a l'air en bon etat.",
+            Saw => "Une scie",
+            Strip => "Une bande, qui ressemble a s'y meprendre a un fusible.",
+            Board => "Une planche de bois",
+        })]);
         let on_background_click = {
             let state = state.clone();
             Callback::from(move |_| state.dispatch(actions![close_family()]))
