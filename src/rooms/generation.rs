@@ -4,7 +4,7 @@ macro_rules! generate_room {
 
         use yew::prelude::*;
 
-        #[function_component(Component)]
+        #[function_component(Room)]
         pub(crate) fn html() -> Html {
             let room_ref = use_node_ref();
             let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!($svg)));

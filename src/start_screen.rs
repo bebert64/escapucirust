@@ -2,7 +2,7 @@ use crate::{store::game_status::display_intro, GlobalState};
 
 use yew::{prelude::*, virtual_dom::VNode};
 
-#[function_component(Component)]
+#[function_component(StartScreen)]
 pub(crate) fn html() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     let open_tab = use_state(|| Tab::Team);

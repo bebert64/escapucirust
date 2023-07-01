@@ -31,10 +31,10 @@ fn app() -> Html {
         <div>
         {
             match &state.game_status {
-                &Intro => html! {<intro::Component />},
-                &Starting => html! {<start_screen::Component />},
-                &Playing => html! {<gaming_board::Component />},
-                &Outro => html! {<outro::Component />},
+                &Intro => html! {<intro::Intro />},
+                &Starting => html! {<start_screen::StartScreen />},
+                &Playing => html! {<gaming_board::GamingBoard />},
+                &Outro => html! {<outro::Outro />},
             }
         }
         </div>

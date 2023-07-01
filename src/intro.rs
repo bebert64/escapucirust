@@ -2,7 +2,7 @@ use crate::{store::game_status::start_playing, GlobalState};
 
 use yew::{prelude::*, virtual_dom::VNode};
 
-#[function_component(Component)]
+#[function_component(Intro)]
 pub(crate) fn html() -> Html {
     let page_index = use_state(|| 0);
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");

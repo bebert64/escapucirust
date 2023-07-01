@@ -17,9 +17,9 @@ pub(crate) mod room_rom1;
 pub(crate) mod room_tiph1;
 pub(crate) mod stairs_face_up;
 
-mod generations;
+mod generation;
 
-use generations::generate_room;
+use generation::generate_room;
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub(crate) enum Rooms {

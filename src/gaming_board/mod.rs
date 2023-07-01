@@ -1,11 +1,11 @@
 mod current_room;
 mod narration;
 
-use {current_room::Component as CurrentRoom, narration::Component as Narration};
+use {current_room::CurrentRoom, narration::Narration};
 
 use yew::prelude::*;
 
-#[function_component(Component)]
+#[function_component(GamingBoard)]
 pub(crate) fn html() -> Html {
     html! {
         <>
