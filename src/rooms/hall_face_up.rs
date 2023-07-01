@@ -1,7 +1,7 @@
 use crate::{
     rooms::Rooms::*,
     store::{
-        house_state::{turn_off_light, turn_on_light},
+        house::{turn_off_light, turn_on_light},
         narration::set_current_text,
     },
 };

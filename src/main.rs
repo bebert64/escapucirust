@@ -3,7 +3,6 @@
 mod gaming_board;
 mod intro;
 mod items;
-mod onclick_listener;
 mod outro;
 mod rooms;
 mod start_screen;

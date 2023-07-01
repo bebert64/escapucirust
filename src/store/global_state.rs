@@ -1,6 +1,6 @@
 use super::{
     game_status::{reduce_game_status, GameStatus},
-    house_state::{reduce_house_state, HouseState, HouseStateAction},
+    house::{reduce_house_state, HouseState, HouseStateAction},
     items::{reduce_items_state, ItemsState, ItemsStateAction},
     narration::reduce_narration,
 };

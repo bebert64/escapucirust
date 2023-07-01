@@ -135,7 +135,7 @@ macro_rules! generate_room {
                 let room_ref = room_ref.clone();
                 let state_clone = state.clone();
                 let create_actions = || GlobalStateActions {
-                    actions: vec![crate::store::house_state::set_current_room($room)]
+                    actions: vec![crate::store::house::set_current_room($room)]
                 };
                 let path_id = format!("to{}", stringify!($room));
                 let effect = move || {
