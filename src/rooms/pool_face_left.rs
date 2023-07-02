@@ -94,7 +94,7 @@ super::generate_room!(
             "Non mais le goût de gens qui vivaient ici..."
         )]),
         ("PoolTable", || actions![set_current_text(
-            "n vieux billard qui a servi de table d'operation ? Ironique..."
+            "Un vieux billard qui a servi de table d'operation ? Ironique..."
         )]),
     ],
 );
