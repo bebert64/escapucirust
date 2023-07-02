@@ -15,23 +15,7 @@ use crate::{
     GlobalState,
 };
 
-use {std::collections::HashSet, strum::IntoEnumIterator, strum_macros::EnumIter, yew::prelude::*};
-
-#[derive(EnumIter, Debug, PartialEq, Eq, Hash, Clone)]
-enum Fuse {
-    Fuse1On,
-    Fuse2On,
-    Fuse3On,
-    Fuse4On,
-    Fuse5On,
-    Fuse6On,
-    Fuse1Off,
-    Fuse2Off,
-    Fuse3Off,
-    Fuse4Off,
-    Fuse5Off,
-    Fuse6Off,
-}
+use {std::collections::HashMap, yew::prelude::*};
 
 #[function_component(Room)]
 pub(crate) fn html() -> Html {
@@ -41,13 +25,13 @@ pub(crate) fn html() -> Html {
     )));
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     let fuses_displayed = use_state(|| {
-        let mut set = HashSet::from([Fuse::Fuse5Off, Fuse::Fuse6Off]);
+        let mut set = HashMap::from([(ElectricalFuse5, false), (ElectricalFuse6, false)]);
         state
             .house
             .fuses_placed_on_electrical_panel
             .iter()
             .for_each(|&item_id| {
-                set.insert(item_id.into_fuse_off());
+                set.insert(item_id, false);
             });
         set
     });
@@ -73,21 +57,15 @@ pub(crate) fn html() -> Html {
     // Display and hide fuses based on local state
     use_effect_with_deps(
         {
-            move |fuses_displayed: &UseStateHandle<HashSet<Fuse>>| {
-                for fuse in Fuse::iter() {
-                    let id = format!("{fuse:?}");
+            move |fuses_displayed: &UseStateHandle<HashMap<ItemId, bool>>| {
+                for (fuse, &is_on) in fuses_displayed.iter() {
+                    let fuse_element_id = fuse.into_fuse_element_id(is_on);
                     let fuse_elem = gloo::utils::document()
-                        .get_element_by_id(&id)
-                        .expect(&format!("{id} not found in svg"));
-                    if !fuses_displayed.contains(&fuse) {
-                        fuse_elem
-                            .set_attribute("class", "hidden")
-                            .expect("Problem setting {id}'s attribute");
-                    } else {
-                        fuse_elem
-                            .set_attribute("class", "")
-                            .expect("Problem setting {id}'s attribute");
-                    }
+                        .get_element_by_id(fuse_element_id)
+                        .expect(&format!("{fuse_element_id} not found in svg"));
+                    fuse_elem
+                        .set_attribute("class", "show")
+                        .expect("Problem setting {id}'s attribute");
                 }
             }
         },
@@ -112,7 +90,7 @@ pub(crate) fn html() -> Html {
             Callback::from(move |_| {
                 fuses_displayed.set({
                     let mut fuses = (*fuses_displayed).clone();
-                    fuses.insert(fuse_removed.into_fuse_off());
+                    fuses.insert(fuse_removed, false);
                     fuses
                 });
                 state.dispatch(actions![
@@ -149,13 +127,27 @@ pub(crate) fn html() -> Html {
 }
 
 impl ItemId {
-    fn into_fuse_off(&self) -> Fuse {
-        match self {
-            ElectricalFuse1 => Fuse::Fuse1Off,
-            ElectricalFuse2 => Fuse::Fuse2Off,
-            ElectricalFuse3 => Fuse::Fuse3Off,
-            ElectricalFuse4 => Fuse::Fuse4Off,
-            _ => panic!("Should never been called with other variant"),
+    fn into_fuse_element_id(&self, is_on: bool) -> &'static str {
+        if is_on {
+            match self {
+                ElectricalFuse1 => "Fuse1On",
+                ElectricalFuse2 => "Fuse2On",
+                ElectricalFuse3 => "Fuse3On",
+                ElectricalFuse4 => "Fuse4On",
+                ElectricalFuse5 => "Fuse5On",
+                ElectricalFuse6 => "Fuse6On",
+                _ => panic!("Should never been called with other variant"),
+            }
+        } else {
+            match self {
+                ElectricalFuse1 => "Fuse1Off",
+                ElectricalFuse2 => "Fuse2Off",
+                ElectricalFuse3 => "Fuse3Off",
+                ElectricalFuse4 => "Fuse4Off",
+                ElectricalFuse5 => "Fuse5Off",
+                ElectricalFuse6 => "Fuse6Off",
+                _ => panic!("Should never been called with other variant"),
+            }
         }
     }
 }
