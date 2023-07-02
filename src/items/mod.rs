@@ -5,7 +5,7 @@ use generation::generate_items;
 use {lazy_static::lazy_static, paste::paste, yew::prelude::*};
 
 generate_items! {
-    [ElectricalFuse, 1, 2, 3, 4, 5, 6];
+    [ElectricalFuse, 1, 2, 3, 4];
     [Strip, 1, 2, 3, 4, 5, 6, 7];
     Saw;
     Board;

@@ -15,7 +15,7 @@ const ROWS_QTY: usize = 4;
 #[function_component(Inventory)]
 pub(crate) fn html() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    let inventory = state.items.inventory();
+    let inventory = state.items.inventory_vec();
     let mut iventory_iter = inventory.into_iter();
 
     let mut rows = Vec::new();

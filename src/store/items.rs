@@ -2,7 +2,10 @@ use super::GlobalStateAction;
 
 use crate::items::{ItemFamily, ItemId, FAMILIES_BY_ID};
 
-use {iter_tools::Itertools, std::collections::HashSet};
+use {
+    iter_tools::Itertools,
+    std::collections::{HashMap, HashSet},
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct ItemsState {
@@ -18,7 +21,6 @@ pub(crate) enum ItemsStateAction {
     CloseFamily,
     SelectFamily(ItemFamily),
     UnselectFamily,
-    FindItem(ItemId),
     AddItemToInventory(ItemId),
     RemoveItemFromInventory(ItemId),
 }
@@ -30,9 +32,6 @@ pub(super) fn reduce_items_state(action: ItemsStateAction, state: &mut ItemsStat
         CloseFamily => state.family_opened = None,
         SelectFamily(family) => state.family_selected = Some(family),
         UnselectFamily => state.family_selected = None,
-        FindItem(item_id) => {
-            state.items_found.insert(item_id);
-        }
         AddItemToInventory(item_id) => {
             if !state.items_found.contains(&item_id) {
                 state.items_found.insert(item_id);
@@ -46,9 +45,8 @@ pub(super) fn reduce_items_state(action: ItemsStateAction, state: &mut ItemsStat
 }
 
 impl ItemsState {
-    pub(crate) fn inventory(self: &Self) -> Vec<(ItemFamily, Vec<ItemId>)> {
-        let mut inventory = self
-            .items_in_inventory
+    pub(crate) fn inventory(self: &Self) -> HashMap<ItemFamily, Vec<ItemId>> {
+        self.items_in_inventory
             .iter()
             .map(|item_id| {
                 (
@@ -59,8 +57,10 @@ impl ItemsState {
                 )
             })
             .into_group_map()
-            .into_iter()
-            .collect::<Vec<_>>();
+    }
+
+    pub(crate) fn inventory_vec(self: &Self) -> Vec<(ItemFamily, Vec<ItemId>)> {
+        let mut inventory = self.inventory().into_iter().collect::<Vec<_>>();
         inventory.sort_by_key(|(family, _)| format!("{family:?}"));
         inventory
     }
@@ -80,10 +80,6 @@ pub(crate) fn select_family(family: ItemFamily) -> GlobalStateAction {
 
 pub(crate) fn unselect_family() -> GlobalStateAction {
     GlobalStateAction::SetItemsState(ItemsStateAction::UnselectFamily)
-}
-
-pub(crate) fn find_item(item_id: ItemId) -> GlobalStateAction {
-    GlobalStateAction::SetItemsState(ItemsStateAction::FindItem(item_id))
 }
 
 pub(crate) fn add_item_to_inventory(item_id: ItemId) -> GlobalStateAction {

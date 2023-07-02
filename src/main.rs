@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 mod gaming_board;
 mod intro;
 mod items;

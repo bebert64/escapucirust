@@ -18,8 +18,9 @@ pub(crate) mod room_tiph1;
 pub(crate) mod stairs_face_up;
 
 mod generation;
+mod onclick_listener;
 
-use generation::generate_room;
+use {generation::generate_room, onclick_listener::add as add_on_click_listener};
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub(crate) enum Rooms {

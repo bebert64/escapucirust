@@ -1,7 +1,7 @@
 macro_rules! add {
-    ([$($listeners: expr),*], $effect: ident, $state: ident, $room_ref: ident) => {
+    ([$($listeners: expr),*], $effect: ident, $room_ref: ident) => {
         #[allow(unused_variables)]  // For the case where listeners is empty
-        let room_test = $room_ref.clone();
+        let room_ref = $room_ref.clone();
         let $effect = move || {
             #[allow(unused_mut)]  // For the case where listeners is empty
             let mut listeners: Vec::<Option<::gloo_events::EventListener>> = Vec::new();
@@ -34,13 +34,9 @@ macro_rules! add {
                 }
                 let mut custom_listener = None;
 
-                if let Some(element) = room_test.cast::<web_sys::HtmlElement>() {
-                    let state_clone = $state.clone();
+                if let Some(element) = room_ref.cast::<web_sys::HtmlElement>() {
                     let on_custom_event =
-                        Callback::from({
-                            let action_clone = action.clone();
-                            move |_| state_clone.dispatch(action_clone)
-                        });
+                        Callback::from(action);
                     let listener = gloo::events::EventListener::new(&element, path_id, move |e| {
                         on_custom_event.emit(e.clone())
                     });

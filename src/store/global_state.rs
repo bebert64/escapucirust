@@ -25,16 +25,22 @@ impl Default for GlobalState {
         GlobalState {
             game_status: GameStatus::Playing,
             house: HouseState {
-                current_room: Rooms::HallFaceUp,
+                current_room: Rooms::ElectricalPanel,
                 is_light_on: false,
                 is_table_cut: false,
                 is_handle_on_exit_door: false,
+                fuses_placed_on_electrical_panel: HashSet::new(),
             },
             items: ItemsState {
                 family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::new(),
+                items_in_inventory: HashSet::from([
+                    crate::items::ItemId::ElectricalFuse1,
+                    crate::items::ItemId::ElectricalFuse2,
+                    crate::items::ItemId::ElectricalFuse3,
+                    crate::items::ItemId::ElectricalFuse4,
+                ]),
             },
             current_text: "Initial text",
         }

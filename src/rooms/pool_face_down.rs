@@ -8,7 +8,7 @@ use crate::{
 
 super::generate_room!(
     "svgs/pool_face_down.svg",
-    "Enter pool_face_down",
+    "EnToujours cette salle d'opération un peu glauque, on voit mal de ce côté.",
     [HallFaceUp, PoolFaceLeft],
     [
         state,
@@ -38,8 +38,14 @@ super::generate_room!(
                 }
             }
         ),
+        ("Boat1", || actions![set_current_text(
+            "TrenteAnsPlusTard ? ok"
+        )]),
+        ("Boat2", || actions![set_current_text(
+            "C'est un fameux trois mâts. Il y a écrit 'Uyuni' ."
+        )]),
         (
-            "Boat1",
+            "Boat3",
             if !state.items.items_found.contains(&ElectricalFuse2) {
                 || {
                     actions![
@@ -58,12 +64,6 @@ super::generate_room!(
                 }
             }
         ),
-        ("Boat2", || actions![set_current_text(
-            "C'est un fameux trois mâts. Il y a écrit 'Uyuni' ."
-        )]),
-        ("Boat3", || actions![set_current_text(
-            "TrenteAnsPlusTard ? ok"
-        )]),
         ("UselessMirror", || actions![set_current_text(
             "Ca a du etre un mirroir à une époque. On n'y voit rien du tout"
         )]),
