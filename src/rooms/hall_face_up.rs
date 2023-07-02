@@ -14,7 +14,7 @@ super::generate_room!(
     Il vaut mieux ne pas trop m'éloigner avant d'avoir remis un peu de lumière.
     Cherchons.
     "#,
-    [HallFaceDown, PoolFaceLeft, ElectricalPanel],
+    [HallFaceDown, PoolFaceLeft],
     [
         state,
         ("TreeOfHat", {

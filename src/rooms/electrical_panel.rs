@@ -1,4 +1,4 @@
-use super::add_on_click_listener;
+use super::{add_on_click_listener, create_listener};
 
 use crate::{
     items::{
@@ -55,22 +55,37 @@ pub(crate) fn html() -> Html {
     );
 
     // Display and hide fuses based on local state
-    use_effect_with_deps(
-        {
-            move |fuses_displayed: &UseStateHandle<HashMap<ItemId, bool>>| {
-                for (fuse, &is_on) in fuses_displayed.iter() {
-                    let fuse_element_id = fuse.into_fuse_element_id(is_on);
-                    let fuse_elem = gloo::utils::document()
-                        .get_element_by_id(fuse_element_id)
-                        .expect(&format!("{fuse_element_id} not found in svg"));
-                    fuse_elem
-                        .set_attribute("class", "show")
-                        .expect("Problem setting {id}'s attribute");
+    {
+        let state = state.clone();
+        fn set_class(fuse: &ItemId, is_on: bool, class: &str) {
+            let fuse_element_id = fuse.into_fuse_element_id(is_on);
+            let fuse_elem = gloo::utils::document()
+                .get_element_by_id(fuse_element_id)
+                .expect(&format!("{fuse_element_id} not found in svg"));
+            fuse_elem
+                .set_attribute("class", class)
+                .expect("Problem setting {id}'s attribute");
+        }
+        use_effect_with_deps(
+            {
+                move |fuses_displayed: &UseStateHandle<HashMap<ItemId, bool>>| {
+                    let mut are_all_fuses_on = true;
+                    for (fuse, &is_on) in fuses_displayed.iter() {
+                        are_all_fuses_on = are_all_fuses_on && is_on;
+                        set_class(fuse, is_on, "show");
+                        set_class(fuse, !is_on, "hidden");
+                    }
+                    if are_all_fuses_on {
+                        state.dispatch(actions![
+                            set_current_text("Et la lumière fut !"),
+                            turn_light_on(),
+                        ])
+                    }
                 }
-            }
-        },
-        fuses_displayed.clone(),
-    );
+            },
+            fuses_displayed.clone(),
+        );
+    }
 
     // Place fuses on panel
     let on_panel_click = {
@@ -87,6 +102,7 @@ pub(crate) fn html() -> Html {
                 .pop()
                 .expect("No empty vec in inventory");
             let state = state.clone();
+            let fuses_displayed = fuses_displayed.clone();
             Callback::from(move |_| {
                 fuses_displayed.set({
                     let mut fuses = (*fuses_displayed).clone();
@@ -105,7 +121,38 @@ pub(crate) fn html() -> Html {
     };
 
     // Toggle fuses
-    // let interactions
+    {
+        let room_ref = room_ref.clone();
+        let fuses_displayed = fuses_displayed.clone();
+        use_effect(move || {
+            let mut listeners: Vec<Option<::gloo_events::EventListener>> = Vec::new();
+            if is_panel_ready {
+                for (fuse, is_on) in fuses_displayed.iter() {
+                    let path_id = fuse.into_fuse_element_id(*is_on);
+                    create_listener!(room_ref, listeners, path_id, {
+                        let fuses_displayed = fuses_displayed.clone();
+                        let fuses_toggled = FUSES_TOGGLED
+                            .get(fuse)
+                            .expect("All fuses should be in the hashmap");
+                        move |_| {
+                            fuses_displayed.set({
+                                let mut fuses = (*fuses_displayed).clone();
+                                for fuse in fuses_toggled {
+                                    let is_on =
+                                        fuses.get_mut(&fuse).expect("All fuses are in hashmap");
+                                    *is_on = !*is_on;
+                                }
+                                fuses
+                            })
+                        }
+                    });
+                }
+            }
+            move || {
+                drop(listeners);
+            }
+        });
+    }
 
     // Navigation
     {
@@ -150,4 +197,15 @@ impl ItemId {
             }
         }
     }
+}
+
+lazy_static::lazy_static! {
+    static ref FUSES_TOGGLED: HashMap<ItemId, Vec<ItemId>> =  HashMap::from([
+        (ElectricalFuse1, vec![ElectricalFuse2]),
+        (ElectricalFuse2, vec![ElectricalFuse1, ElectricalFuse3]),
+        (ElectricalFuse3, vec![ElectricalFuse2, ElectricalFuse4]),
+        (ElectricalFuse4, vec![ElectricalFuse3, ElectricalFuse5]),
+        (ElectricalFuse5, vec![ElectricalFuse4, ElectricalFuse6]),
+        (ElectricalFuse6, vec![ElectricalFuse5]),
+    ]);
 }

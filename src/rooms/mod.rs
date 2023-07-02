@@ -20,7 +20,10 @@ pub(crate) mod stairs_face_up;
 mod generation;
 mod onclick_listener;
 
-use {generation::generate_room, onclick_listener::add as add_on_click_listener};
+use {
+    generation::generate_room,
+    onclick_listener::{add as add_on_click_listener, create_listener},
+};
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub(crate) enum Rooms {

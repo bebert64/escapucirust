@@ -31,51 +31,14 @@ macro_rules! generate_room {
             $({
                 let room_ref = room_ref.clone();
                 let state = $state.clone();
-                let create_actions = || GlobalStateActions {
-                    actions: vec![crate::store::house::set_current_room($room)]
-                };
                 let path_id = format!("to{}", stringify!($room));
-                let effect = move || {
-                    let element = gloo::utils::document()
-                        .get_element_by_id(&path_id)
-                        .expect(&format!("{} not found in svg", &path_id));
-                    if !element
-                        .get_attribute("listener")
-                        .is_some_and(|attr| attr == "set")
-                    {
-                        element
-                            .add_event_listener_with_callback(
-                                "click",
-                                &::js_sys::Function::new_no_args(
-                                    format!(
-                                        r#"
-                                            var event = new CustomEvent("{}", {{"bubbles": true}});
-                                            my_room.dispatchEvent(event);
-                                        "#,
-                                        path_id
-                                    )
-                                    .as_str(),
-                                ),
-                            )
-                            .unwrap();
-                        element.set_attribute("listener", "set").unwrap();
-                    }
-                    let mut custom_listener = None;
-
-                    if let Some(element) = room_ref.cast::<web_sys::HtmlElement>() {
-                        let on_custom_event =
-                            Callback::from({
-                                move |_| state.dispatch(create_actions())
-                            });
-                        let listener = gloo::events::EventListener::new(&element, path_id, move |e| {
-                            on_custom_event.emit(e.clone())
-                        });
-
-                        custom_listener = Some(listener);
-                    }
-
-                    move || drop(custom_listener)
-                };
+                super::add_on_click_listener!(
+                    [(path_id, move |_| state.dispatch(GlobalStateActions {
+                        actions: vec![crate::store::house::set_current_room($room)]
+                    }))],
+                    effect,
+                    room_ref
+                );
                 use_effect(effect);
             })*
 
@@ -84,48 +47,11 @@ macro_rules! generate_room {
                 let room_ref = room_ref.clone();
                 let (path_id, create_actions) = $listener;
                 let state = $state.clone();
-                let effect = move || {
-                    let element = gloo::utils::document()
-                        .get_element_by_id(&path_id)
-                        .expect(&format!("{} not found in svg", &path_id));
-                    if !element
-                        .get_attribute("listener")
-                        .is_some_and(|attr| attr == "set")
-                    {
-                        element
-                            .add_event_listener_with_callback(
-                                "click",
-                                &::js_sys::Function::new_no_args(
-                                    format!(
-                                        r#"
-                                            var event = new CustomEvent("{}", {{"bubbles": true}});
-                                            my_room.dispatchEvent(event);
-                                        "#,
-                                        path_id
-                                    )
-                                    .as_str(),
-                                ),
-                            )
-                            .unwrap();
-                        element.set_attribute("listener", "set").unwrap();
-                    }
-                    let mut custom_listener = None;
-
-                    if let Some(element) = room_ref.cast::<web_sys::HtmlElement>() {
-                        let on_custom_event =
-                            Callback::from({
-                                let state_clone = state.clone();
-                                move |_| state_clone.dispatch(create_actions())
-                            });
-                        let listener = gloo::events::EventListener::new(&element, path_id, move |e| {
-                            on_custom_event.emit(e.clone())
-                        });
-
-                        custom_listener = Some(listener);
-                    }
-
-                    move || drop(custom_listener)
-                };
+                super::add_on_click_listener!(
+                    [(path_id, move |_| state.dispatch(create_actions()))],
+                    effect,
+                    room_ref
+                );
                 use_effect(effect);
             })*
 
