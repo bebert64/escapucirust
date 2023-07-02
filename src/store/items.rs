@@ -34,8 +34,10 @@ pub(super) fn reduce_items_state(action: ItemsStateAction, state: &mut ItemsStat
             state.items_found.insert(item_id);
         }
         AddItemToInventory(item_id) => {
-            state.items_found.insert(item_id);
-            state.items_in_inventory.insert(item_id);
+            if !state.items_found.contains(&item_id) {
+                state.items_found.insert(item_id);
+                state.items_in_inventory.insert(item_id);
+            }
         }
         RemoveItemFromInventory(item_id) => {
             state.items_in_inventory.remove(&item_id);
