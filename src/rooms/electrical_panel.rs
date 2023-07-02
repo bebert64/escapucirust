@@ -78,7 +78,7 @@ pub(crate) fn html() -> Html {
                     let id = format!("{fuse:?}");
                     let fuse_elem = gloo::utils::document()
                         .get_element_by_id(&id)
-                        .expect("{id} not found in svg");
+                        .expect(&format!("{id} not found in svg"));
                     if !fuses_displayed.contains(&fuse) {
                         fuse_elem
                             .set_attribute("class", "hidden")
