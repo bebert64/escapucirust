@@ -16,6 +16,7 @@ pub(crate) fn html() -> Html {
             Saw => "Une scie",
             Strip => "Une bande, qui ressemble a s'y meprendre a un fusible.",
             Board => "Une planche de bois",
+            Key => "Une clé",
         })]);
         let on_background_click = {
             let state = state.clone();

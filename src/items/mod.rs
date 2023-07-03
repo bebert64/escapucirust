@@ -9,6 +9,7 @@ generate_items! {
     [Strip, 1, 2, 3, 4, 5, 6, 7];
     Saw;
     Board;
+    Key;
 }
 
 #[derive(Properties, PartialEq)]
@@ -27,6 +28,7 @@ pub(crate) fn html(props: &ItemProps) -> Html {
         Saw => include_str!("svgs/saw.svg"),
         Strip => include_str!("svgs/strip.svg"),
         Board => include_str!("svgs/board.svg"),
+        Key => include_str!("svgs/key.svg"),
     };
     let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(svg_str));
     html! {
