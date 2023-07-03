@@ -1,16 +1,13 @@
 use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
-    store::{
-        actions, game_status::finish_game, items::add_item_to_inventory,
-        narration::set_current_text,
-    },
+    store::{actions, items::add_item_to_inventory, narration::set_current_text},
 };
 
 super::generate_room!(
     "svgs/frigogidaire.svg",
     "Est-ce un frigo ? Est-ce un frigidaire ?",
-    [HallFaceUp, PoolFaceLeft],
+    [KitchenFaceLeft],
     [
         state,
         ("Shelf1", {
