@@ -1,0 +1,23 @@
+Installer Rust
+https://www.rust-lang.org/tools/install
+
+Installer trunk
+cargo install trunk
+
+Installer tauri cli
+cargo install tauri-cli
+
+Télécharger le nouveau repo
+Aller dans le dossier où va se créer Escapucirust
+git clone https://github.com/bebert64/escapucirust.git
+Si vous voulez, vous pouvez effacer l'ancien dossier :)
+
+Lancer en mode dev
+Aller d'abord dans le nouveau dossier
+cd escapucirust
+Puis
+trunk serve --open
+(long la première fois, plus rapide les suivantes)
+
+Créer un exe
+cargo tauri build
