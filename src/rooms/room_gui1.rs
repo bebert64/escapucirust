@@ -11,7 +11,7 @@ super::generate_room!(
         ("LibraryGui", || actions!(set_current_text(
             "Capitaine Tsubasa, Tom-Tom et Nana, et d'autres bouquins pour enfant"
         ))),
-        ("Drawers", || actions!(set_current_text(
+        ("DrawersGui", || actions!(set_current_text(
             "Des affaires de foot et des t-shirts beaucoup trop grand pour un enfant"
         )))
     ]
