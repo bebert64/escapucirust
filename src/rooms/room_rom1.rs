@@ -11,7 +11,7 @@ super::generate_room!(
         ("LibraryRom1", || actions![set_current_text(
             "Une autre page du journal. Pas utile pour me faire sortir d'ici mais intéressant."
         )]),
-        ("Book", || actions![set_current_text(
+        ("BookPile", || actions![set_current_text(
             "Un tas haut et un tabac. Quelle bande de comique..."
         )])
     ]
