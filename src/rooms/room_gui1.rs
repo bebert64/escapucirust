@@ -13,6 +13,9 @@ super::generate_room!(
         ))),
         ("DrawersGui", || actions!(set_current_text(
             "Des affaires de foot et des t-shirts beaucoup trop grand pour un enfant"
-        )))
+        ))),
+        ("Hatch", || actions!(set_current_text(
+            "C'est déjà bien assez effrayant comme ça... Pourquoi aller voir le grenier ?"
+        ))),
     ]
 );
