@@ -12,6 +12,10 @@ pub(crate) struct HouseState {
     pub(crate) is_table_cut: bool,
     pub(crate) is_handle_on_exit_door: bool,
     pub(crate) is_board_on_hole: bool,
+    pub(crate) is_door_to_room_gui1_open: bool,
+    pub(crate) is_door_to_room_mart1_open: bool,
+    pub(crate) is_door_to_room_rom1_open: bool,
+    pub(crate) is_door_to_room_tiph1_open: bool,
     pub(crate) are_drawers_open: bool,
 }
 

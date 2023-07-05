@@ -16,24 +16,15 @@
     width: 100%;
 }
 
-.rooms_CurrentRoom path {
+.rooms_CurrentRoom path, rect {
     stroke: none;
     fill: rgba(0, 0, 0, 0);
 }
 
-.rooms_CurrentRoom path:hover {
+.rooms_CurrentRoom path:hover, rect:hover {
     stroke: none;
-    fill: rgba(71, 73, 180, 0.2);
-}
-
-.rooms_CurrentRoom rect {
-    stroke: none;
-    fill: rgba(0, 0, 0, 0);
-}
-
-.rooms_CurrentRoom rect:hover {
-    stroke: none;
-    fill: rgba(71, 73, 180, 0.2);
+    fill: rgba(71, 73, 180, 0.4);
+    fill-opacity: unset;
 }
 
 .hidden {
