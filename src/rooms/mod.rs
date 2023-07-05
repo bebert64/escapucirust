@@ -22,7 +22,9 @@ mod onclick_listener;
 
 use {
     generation::generate_room,
-    onclick_listener::{add as add_on_click_listener, create_listener},
+    onclick_listener::{
+        add as add_on_click_listener, create_listener, create_listener_from_callback,
+    },
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]

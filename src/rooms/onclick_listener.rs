@@ -14,6 +14,19 @@ macro_rules! add {
 
 macro_rules! create_listener {
     ($room_ref: ident, $listeners: ident, $path_id: expr, $action: expr) => {
+        let on_custom_event = Callback::from($action);
+
+        crate::rooms::onclick_listener::create_listener_from_callback!(
+            $room_ref,
+            $listeners,
+            $path_id,
+            on_custom_event
+        )
+    };
+}
+
+macro_rules! create_listener_from_callback {
+    ($room_ref: ident, $listeners: ident, $path_id: expr, $callback: ident) => {
         let element = gloo::utils::document()
             .get_element_by_id(&$path_id)
             .expect(&format!("{} not found in svg", &$path_id));
@@ -40,11 +53,11 @@ macro_rules! create_listener {
             ));
         }
         let custom_listener;
+        let callback = $callback.clone();
 
         if let Some(element) = $room_ref.cast::<web_sys::HtmlElement>() {
-            let on_custom_event = Callback::from($action);
             let listener = gloo::events::EventListener::new(&element, $path_id, move |e| {
-                on_custom_event.emit(e.clone())
+                callback.emit(e.clone())
             });
 
             custom_listener = Some(listener);
@@ -54,4 +67,4 @@ macro_rules! create_listener {
     };
 }
 
-pub(crate) use {add, create_listener};
+pub(crate) use {add, create_listener, create_listener_from_callback};
