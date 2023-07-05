@@ -65,7 +65,7 @@ super::generate_room!(
             }
         ),
         ("UselessMirror", || actions![set_current_text(
-            "Ca a du etre un mirroir à une époque. On n'y voit rien du tout"
+            "Ca a du etre un mirroir à une époque. On n'y voit rien du tout."
         )]),
         (
             "Box",
@@ -73,8 +73,7 @@ super::generate_room!(
                 || {
                     actions![
                         set_current_text(
-                            r#"Une boite pleine de trucs inutiles
-                            Il y a quelque-chose dedans"#
+                            "Une boite pleine de trucs inutiles. Il y a quelque-chose dedans."
                         ),
                         add_item_to_inventory(Strip2)
                     ]
@@ -82,8 +81,8 @@ super::generate_room!(
             } else {
                 || {
                     actions![set_current_text(
-                        r#"Une boite pleine de trucs inutiles
-                        Il n'y a vraiment plus que des trucs inutiles dedans"#
+                        r#"Une boite pleine de trucs inutiles.
+                        Il n'y a vraiment plus que des trucs inutiles dedans."#
                     )]
                 }
             }
