@@ -4,9 +4,6 @@ https://www.rust-lang.org/tools/install
 Installer trunk
 cargo install trunk
 
-Installer tauri cli
-cargo install tauri-cli
-
 Télécharger le nouveau repo
 Aller dans le dossier où va se créer Escapucirust
 git clone https://github.com/bebert64/escapucirust.git
@@ -20,4 +17,10 @@ trunk serve --open
 (long la première fois, plus rapide les suivantes)
 
 Créer un exe
+1. Installer tauri cli (seulement la première fois)
+cargo install tauri-cli
+2. Créer l'exe
 cargo tauri build
+
+Pour Romain, pour build et move escapucina
+nix-shell --command "cargo tauri build && mv src-tauri/target/release/escapucina ."
