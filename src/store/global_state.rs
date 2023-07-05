@@ -25,12 +25,12 @@ impl Default for GlobalState {
         GlobalState {
             game_status: GameStatus::Playing,
             house: HouseState {
-                current_room: Rooms::KitchenFaceDown,
-                is_light_on: true,
-                is_table_cut: false,
-                is_handle_on_exit_door: false,
-                is_board_on_hole: false,
-                are_drawers_open: false,
+                current_room: Rooms::HallFaceUp,
+                is_light_on: false,
+                is_table_cut: true,
+                is_handle_on_exit_door: true,
+                is_board_on_hole: true,
+                are_drawers_open: true,
                 fuses_placed_on_electrical_panel: HashSet::new(),
             },
             items: ItemsState {
