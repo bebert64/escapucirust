@@ -1,9 +1,6 @@
 Installer Rust
 https://www.rust-lang.org/tools/install
 
-Installer wasm
-rustup target add wasm32-unknown-unknown
-
 Installer trunk
 cargo install trunk
 
@@ -18,6 +15,21 @@ cd escapucirust
 Puis
 trunk serve --open
 (long la première fois, plus rapide les suivantes)
+
+
+Pour modifier le code : 
+Ouvrir Visual Studio code
+*********
+COMMENCER par un Git Pull :
+ - Soit via les "..." du Source Control (les petits ronds sur la gauche)
+ - Soit via la commande "Git Pull" dans le terminal GitBash
+********
+MODIFIER les fichiers dans le dossier
+********
+Une fois terminé :
+- Aller dans Source Control (les petits ronds sur la gauche)
+- Commit & Push (ATTENTION : Ne pas oublier le message
+
 
 Créer un exe
 1. Installer tauri cli (seulement la première fois)
