@@ -25,17 +25,19 @@ impl Default for GlobalState {
         GlobalState {
             game_status: GameStatus::Playing,
             house: HouseState {
-                current_room: Rooms::HallFaceUp,
-                is_light_on: false,
+                current_room: Rooms::KitchenFaceDown,
+                is_light_on: true,
                 is_table_cut: false,
                 is_handle_on_exit_door: false,
+                is_board_on_hole: false,
+                are_drawers_open: false,
                 fuses_placed_on_electrical_panel: HashSet::new(),
             },
             items: ItemsState {
                 family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::new(),
+                items_in_inventory: HashSet::from([crate::items::ItemId::Key]),
             },
             current_text: "Initial text",
         }

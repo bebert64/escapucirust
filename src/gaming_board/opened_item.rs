@@ -17,6 +17,10 @@ pub(crate) fn html() -> Html {
             Strip => "Une bande, qui ressemble a s'y meprendre a un fusible.",
             Board => "Une planche de bois",
             Key => "Une clé",
+            TeddyBear1 => "Un ours en peluche",
+            TeddyBear2 => "Un ours en peluche",
+            TeddyBear3 => "Un ours en peluche",
+            TeddyBear4 => "Un ours en peluche",
         })]);
         let on_background_click = {
             let state = state.clone();

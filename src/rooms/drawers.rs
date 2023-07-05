@@ -20,14 +20,17 @@ pub(crate) fn html() -> Html {
     let useless_items_counter = use_state(|| 0);
 
     // Set initial text
-    use_effect({
-        let state = state.clone();
-        move || {
-            state.dispatch(actions![set_current_text(
-                "Des tiroirs clairement en bordel..."
-            )]);
-        }
-    });
+    use_effect_with_deps(
+        {
+            let state = state.clone();
+            move |_| {
+                state.dispatch(actions![set_current_text(
+                    "Des tiroirs clairement en bordel..."
+                )]);
+            }
+        },
+        state.house.current_room.clone(),
+    );
 
     // Set onclick listeners for the search drawers
     {

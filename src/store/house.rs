@@ -12,6 +12,7 @@ pub(crate) struct HouseState {
     pub(crate) is_table_cut: bool,
     pub(crate) is_handle_on_exit_door: bool,
     pub(crate) is_board_on_hole: bool,
+    pub(crate) are_drawers_open: bool,
 }
 
 #[derive(Clone, Debug)]
@@ -21,6 +22,7 @@ pub(crate) enum HouseStateAction {
     CutTable,
     PlaceFuse(ItemId),
     PlaceBoardOnHole,
+    OpenDrawers,
 }
 
 pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseState) {
@@ -33,6 +35,7 @@ pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseStat
             state.fuses_placed_on_electrical_panel.insert(item_id);
         }
         PlaceBoardOnHole => state.is_board_on_hole = true,
+        OpenDrawers => state.are_drawers_open = true,
     };
 }
 
@@ -54,4 +57,8 @@ pub(crate) fn place_fuse(item_id: ItemId) -> GlobalStateAction {
 
 pub(crate) fn place_board_on_hole() -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::PlaceBoardOnHole)
+}
+
+pub(crate) fn open_drawers() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::OpenDrawers)
 }
