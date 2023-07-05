@@ -1,6 +1,9 @@
 Installer Rust
 https://www.rust-lang.org/tools/install
 
+Installer wasm
+rustup target add wasm32-unknown-unknown
+
 Installer trunk
 cargo install trunk
 
