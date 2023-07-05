@@ -1,24 +1,90 @@
-use crate::rooms::Rooms::*;
+use crate::{
+    items::{ItemFamily, ItemId::*},
+    rooms::Rooms::*,
+    store::{
+        actions,
+        house::{place_board_on_hole, set_current_room},
+        items::remove_item_from_iventory,
+        narration::set_current_text,
+    },
+};
 
 super::generate_room!(
     "svgs/stairs_face_up.svg",
-    "Enter stairs_face_up",
-    [PoolFaceLeft, KitchenFaceLeft, FirstFloorFaceDown],
-    [],
+    "",
+    [PoolFaceLeft, KitchenFaceLeft],
+    [
+        state,
+        ("Drawing", || {
+            actions![set_current_text(
+                r#"Si on tourne un peu la tête, on dirait un portrait... Hmm...
+                Non, je n'ai pas la moindre idée de ce que c'est."#
+            )]
+        }),
+        ("HorrorPainting", || {
+            actions![set_current_text(
+                "Ils sortent du mur quand même, les trucs, là..!"
+            )]
+        }),
+        ("Hole", {
+            if state
+                .items
+                .family_selected
+                .is_some_and(|family| family == ItemFamily::Board)
+            {
+                || actions![place_board_on_hole(), remove_item_from_iventory(Board)]
+            } else {
+                || actions![]
+            }
+        }),
+        ("toFirstFloorFaceDown", {
+            if state.house.is_board_on_hole {
+                || actions![set_current_room(FirstFloorFaceDown)]
+            } else {
+                || actions![set_current_text("Nope, le trou est beaucoup trop profond.")]
+            }
+        })
+    ],
     {
         let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-        let effect = if state.items.items_found.contains(&crate::items::ItemId::Saw) {
-            || {
-                let board = gloo::utils::document()
-                    .get_element_by_id("Board")
-                    .expect("Board not found in svg");
-                board
-                    .set_attribute("class", "hidden")
-                    .expect("Problem setting board's attribute");
-            }
-        } else {
-            || ()
-        };
-        use_effect(effect);
+        let is_board_on_hole = state.house.is_board_on_hole;
+        {
+            let state = state.clone();
+            use_effect_with_deps(
+                move |_: &bool| {
+                    state.dispatch(actions![set_current_text(
+                        if !state.house.is_board_on_hole {
+                            r#"Wow, ce trou est impossible à franchir !
+                    "Il semble aller direct en Enfer."#
+                        } else {
+                            "Le trou semble beaucoup plus franchissable maintenant"
+                        }
+                    )]);
+                },
+                is_board_on_hole,
+            );
+        }
+        use_effect_with_deps(
+            if state.house.is_board_on_hole {
+                |_: &bool| {
+                    let board = gloo::utils::document()
+                        .get_element_by_id("Board")
+                        .expect("Board not found in svg");
+                    board
+                        .set_attribute("class", "show")
+                        .expect("Problem setting board's attribute");
+                }
+            } else {
+                |_: &bool| {
+                    let board = gloo::utils::document()
+                        .get_element_by_id("Board")
+                        .expect("Board not found in svg");
+                    board
+                        .set_attribute("class", "hidden")
+                        .expect("Problem setting board's attribute");
+                }
+            },
+            is_board_on_hole,
+        );
     }
 );

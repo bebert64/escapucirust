@@ -9,9 +9,9 @@ use global_state::GlobalStateAction;
 pub(crate) use global_state::{GlobalState, GlobalStateActions};
 
 macro_rules! actions {
-    ($($action: expr),+ $(,)?) => {
+    ($($action: expr),* $(,)?) => {
         crate::store::global_state::GlobalStateActions {
-            actions: vec![$($action),+]
+            actions: vec![$($action),*]
         }
     }
 }
