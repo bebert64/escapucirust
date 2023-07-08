@@ -1,11 +1,14 @@
 use crate::{
-    items::{ItemFamily, ItemId},
+    items::{
+        ItemFamily,
+        ItemId::{self, *},
+    },
     rooms::Rooms::*,
     store::{
         actions,
         house::cut_table,
-        items::{add_item_to_inventory, remove_item_from_iventory},
-        narration::set_current_text,
+        items::{add_item_to_inventory, find_object, remove_item_from_iventory},
+        narration::{set_current_text, simple_description},
     },
 };
 
@@ -15,17 +18,18 @@ super::generate_room!(
     [LivingRoomFaceRight, KitchenFaceDown],
     [
         state,
-        ("Door", || {
-            actions![set_current_text(
-                r#"Une porte vers l'extérieur. 
-                Dommage que les devs aient eu la flemme de programmer un extérieur."#
-            )]
-        }),
-        ("Drawing", || {
-            actions![set_current_text(
-                "Un tableau. Je n'arrive pas à me faire une opinion."
-            )]
-        }),
+        simple_description!(
+            "Door",
+            r#"Une porte vers l'extérieur. 
+            Dommage que les devs aient eu la flemme de programmer un extérieur."#
+        ),
+        find_object!(
+            state,
+            "Drawing",
+            Doudou2,
+            "Un tableau. Je n'arrive pas à me faire une opinion. Un doudou était planqué derrière.",
+            "Un tableau. Je n'arrive pas à me faire une opinion.",
+        ),
         ("Table", {
             if state.house.is_table_cut {
                 || actions![set_current_text("Plus rien à faire.")]
@@ -39,7 +43,7 @@ super::generate_room!(
                         set_current_text("Cutting table."),
                         cut_table(),
                         remove_item_from_iventory(ItemId::Saw),
-                        add_item_to_inventory(ItemId::Board)
+                        add_item_to_inventory(Board)
                     ]
                 }
             } else {
@@ -59,7 +63,7 @@ super::generate_room!(
                     .get_element_by_id("TableCut")
                     .expect("TableCut not found in svg");
                 table_cut
-                    .set_attribute("class", "")
+                    .set_attribute("class", "show")
                     .expect("Problem setting table_cut's attribute");
             }
         } else {
