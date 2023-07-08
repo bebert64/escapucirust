@@ -6,7 +6,7 @@ use crate::{
 super::generate_room!(
     "svgs/electrical_panel.svg",
     r#"
-    La porte de Rom1 est bloqué et voilà un curieux cadenas à 7 lettres ressemblant à s'y méprendre à un panneau électrique.
+    La porte de Rom1 est bloqué et voilà un curieux cadenas à 6 lettres ressemblant à s'y méprendre à un panneau électrique.
     "#,
     [],
     [("toHallFaceUp", {
