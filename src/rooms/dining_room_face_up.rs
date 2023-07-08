@@ -3,7 +3,7 @@ use crate::{
         ItemFamily,
         ItemId::{self, *},
     },
-    rooms::Rooms::*,
+    rooms::{display_element_if, Rooms::*},
     store::{
         actions,
         house::cut_table,
@@ -57,24 +57,7 @@ super::generate_room!(
         })
     ],
     {
-        use_effect(if state.house.is_table_cut {
-            || {
-                let table_cut = gloo::utils::document()
-                    .get_element_by_id("TableCut")
-                    .expect("TableCut not found in svg");
-                table_cut
-                    .set_attribute("class", "show")
-                    .expect("Problem setting table_cut's attribute");
-            }
-        } else {
-            || {
-                let table_cut = gloo::utils::document()
-                    .get_element_by_id("TableCut")
-                    .expect("TableCut not found in svg");
-                table_cut
-                    .set_attribute("class", "hidden")
-                    .expect("Problem setting table_cut's attribute");
-            }
-        });
+        let is_table_cut = state.house.is_table_cut;
+        use_effect_with_deps(display_element_if!(is_table_cut, "TableCut"), is_table_cut);
     }
 );

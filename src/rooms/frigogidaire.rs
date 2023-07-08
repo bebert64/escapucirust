@@ -1,7 +1,7 @@
 use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
-    store::{actions, items::add_item_to_inventory, narration::set_current_text},
+    store::{items::find_object, narration::simple_description},
 };
 
 super::generate_room!(
@@ -10,27 +10,14 @@ super::generate_room!(
     [KitchenFaceLeft],
     [
         state,
-        ("Shelf1", {
-            || {
-                actions![set_current_text(
-                    "Qui range sa vaisselle dans un frigogidaire ?"
-                )]
-            }
-        }),
-        ("Shelf2", {
-            || actions![set_current_text("Ca ne se mange plus.")]
-        }),
-        ("Shelf3", {
-            if !state.items.items_found.contains(&Strip3) {
-                || {
-                    actions![
-                        set_current_text("C'est périmé. Hmmm... Encore une bandelette."),
-                        add_item_to_inventory(Strip3)
-                    ]
-                }
-            } else {
-                || actions![set_current_text("C'est périmé. Hmmm... ")]
-            }
-        }),
+        simple_description!("Shelf1", "Qui range sa vaisselle dans un frigogidaire ?"),
+        simple_description!("Shelf2", "Ca ne se mange plus."),
+        find_object!(
+            state,
+            "Shelf3",
+            Strip3,
+            "C'est périmé. Hmmm... Encore une bandelette.",
+            "C'est périmé. Hmmm... "
+        ),
     ],
 );

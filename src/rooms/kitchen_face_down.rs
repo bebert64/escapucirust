@@ -5,7 +5,7 @@ use crate::{
         actions,
         house::{open_drawers, set_current_room},
         items::remove_item_from_iventory,
-        narration::set_current_text,
+        narration::{set_current_text, simple_description},
     },
 };
 
@@ -15,19 +15,20 @@ super::generate_room!(
     [DiningRoomFaceUp, StairsFaceUp],
     [
         state,
-        ("Shelf1", || actions![set_current_text(
-            "On peut faire périmer du sel ??"
-        )]),
-        ("Shelf2", || actions![set_current_text(
+        simple_description!("Shelf1", "On peut faire périmer du sel ??"),
+        simple_description!(
+            "Shelf2",
             r#"La Plancha pour les nuls. Avec post-it et annotations.
             Quelqu'un a barré "les nuls"."#
-        )]),
-        ("Drawer", || actions![set_current_text(
+        ),
+        simple_description!(
+            "Drawer",
             "Des tupperwares sous des tupperwares, et entre d'autres tupperwares."
-        )]),
-        ("Door", || actions![set_current_text(
+        ),
+        simple_description!(
+            "Door",
             "On dirait pas mais elle est fermée à clé. Clairement."
-        )]),
+        ),
         (
             "toDrawers",
             if !state.house.are_drawers_open {

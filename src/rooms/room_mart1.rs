@@ -1,18 +1,14 @@
-use crate::{
-    rooms::Rooms::*,
-    store::{actions, narration::set_current_text},
-};
+use crate::{rooms::Rooms::*, store::narration::simple_description};
 
 super::generate_room!(
     "svgs/room_mart1.svg",
     "Une chambre de bo goss",
     [FirstFloorFaceDown],
     [
-        ("LibraryMart1", || actions![set_current_text(
+        simple_description!(
+            "LibraryMart1",
             "Une autre page du journal. Pas utile pour me faire sortir d'ici mais intéressant."
-        )]),
-        ("Window", || actions![set_current_text(
-            "Hey, on voit la voiture !"
-        )])
+        ),
+        simple_description!("Window", "Hey, on voit la voiture !")
     ]
 );

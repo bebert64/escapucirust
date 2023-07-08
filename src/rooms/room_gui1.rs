@@ -1,21 +1,21 @@
-use crate::{
-    rooms::Rooms::*,
-    store::{actions, narration::set_current_text},
-};
+use crate::{rooms::Rooms::*, store::narration::simple_description};
 
 super::generate_room!(
     "svgs/room_gui1.svg",
     "La chambre de Gui1",
     [FirstFloorFaceDown],
     [
-        ("LibraryGui", || actions!(set_current_text(
+        simple_description!(
+            "LibraryGui",
             "Capitaine Tsubasa, Tom-Tom et Nana, et d'autres bouquins pour enfant"
-        ))),
-        ("DrawersGui", || actions!(set_current_text(
+        ),
+        simple_description!(
+            "DrawersGui",
             "Des affaires de foot et des t-shirts beaucoup trop grand pour un enfant"
-        ))),
-        ("Hatch", || actions!(set_current_text(
+        ),
+        simple_description!(
+            "Hatch",
             "C'est déjà bien assez effrayant comme ça... Pourquoi aller voir le grenier ?"
-        ))),
+        ),
     ]
 );

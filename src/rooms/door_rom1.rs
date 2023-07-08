@@ -1,4 +1,4 @@
-use super::{add_on_click_listener, create_listener, Rooms::*};
+use super::{add_onclick_listener, create_listener, Rooms::*};
 
 use crate::{
     items::ItemId::*,
@@ -132,7 +132,7 @@ pub(crate) fn html() -> Html {
     // Navigation
     {
         let state = state.clone();
-        add_on_click_listener!(
+        add_onclick_listener!(
             [("toFirstFloorFaceDown", move |_| state
                 .dispatch(actions![set_current_room(FirstFloorFaceDown)]))],
             effect,

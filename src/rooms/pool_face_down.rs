@@ -2,7 +2,10 @@ use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
     store::{
-        actions, house::set_current_room, items::add_item_to_inventory, narration::set_current_text,
+        actions,
+        house::set_current_room,
+        items::find_object,
+        narration::{set_current_text, simple_description},
     },
 };
 
@@ -38,60 +41,38 @@ super::generate_room!(
                 }
             }
         ),
-        ("Boat1", || actions![set_current_text(
-            "TrenteAnsPlusTard ? ok"
-        )]),
-        ("Boat2", || actions![set_current_text(
+        simple_description!("Boat1", "TrenteAnsPlusTard ? ok"),
+        simple_description!(
+            "Boat2",
             "C'est un fameux trois mâts. Il y a écrit 'Uyuni' ."
-        )]),
-        (
+        ),
+        find_object!(
+            state,
             "Boat3",
-            if !state.items.items_found.contains(&ElectricalFuse2) {
-                || {
-                    actions![
-                        set_current_text(
-                            r#"Une maquette de bateau, un peu fragile.
-                            Tiens, il y a quelque-chose cache la dessous..."#
-                        ),
-                        add_item_to_inventory(ElectricalFuse2)
-                    ]
-                }
-            } else {
-                || {
-                    actions![set_current_text(
-                        "Oups, le mât est cassé... Cela reste beau quand meme. J'espère..."
-                    )]
-                }
-            }
+            ElectricalFuse2,
+            r#"Une maquette de bateau, un peu fragile.
+                            Tiens, il y a quelque-chose cache la dessous..."#,
+            "Oups, le mât est cassé... Cela reste beau quand meme. J'espère..."
         ),
-        ("UselessMirror", || actions![set_current_text(
+        simple_description!(
+            "UselessMirror",
             "Ca a du etre un mirroir à une époque. On n'y voit rien du tout."
-        )]),
-        (
-            "Box",
-            if !state.items.items_found.contains(&Strip2) {
-                || {
-                    actions![
-                        set_current_text(
-                            "Une boite pleine de trucs inutiles. Il y a quelque-chose dedans."
-                        ),
-                        add_item_to_inventory(Strip2)
-                    ]
-                }
-            } else {
-                || {
-                    actions![set_current_text(
-                        r#"Une boite pleine de trucs inutiles.
-                        Il n'y a vraiment plus que des trucs inutiles dedans."#
-                    )]
-                }
-            }
         ),
-        ("Jukebox", || actions![set_current_text(
+        find_object!(
+            state,
+            "Box",
+            Strip2,
+            "Une boite pleine de trucs inutiles. Il y a quelque-chose dedans.",
+            r#"Une boite pleine de trucs inutiles.
+                        Il n'y a vraiment plus que des trucs inutiles dedans."#
+        ),
+        simple_description!(
+            "Jukebox",
             "Dire Strait et ? C'est un mec célèbre, ça, Blondin ?"
-        )]),
-        ("PoolTable", || actions![set_current_text(
+        ),
+        simple_description!(
+            "PoolTable",
             "Un vieux billard qui a servi de table d'operation ? Ironique..."
-        )]),
+        ),
     ],
 );

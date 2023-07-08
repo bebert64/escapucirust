@@ -1,9 +1,7 @@
 use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
-    store::{
-        actions, house::set_current_room, items::add_item_to_inventory, narration::set_current_text,
-    },
+    store::{actions, house::set_current_room, items::find_object, narration::set_current_text},
 };
 
 super::generate_room!(
@@ -17,46 +15,24 @@ super::generate_room!(
     [HallFaceDown, PoolFaceLeft],
     [
         state,
-        ("TreeOfHat", {
-            if !state.items.items_found.contains(&Strip1) {
-                || {
-                    actions![
-                        set_current_text(
-                            r#"On dirait que ces chapeaux sont là depuis une éternité. Intrigant…
-                            J'en prendrais bien un mais on n'est pas le 2 mai, ça porte malheur.
-                            Ah tiens, une bandelette de papier ?"#
-                        ),
-                        add_item_to_inventory(Strip1)
-                    ]
-                }
-            } else {
-                || {
-                    actions![set_current_text(
-                        r#"On dirait que ces chapeaux sont là depuis une éternité. Intrigant…
-                        J'en prendrais bien un mais on n'est pas le 2 mai, ça porte malheur."#
-                    )]
-                }
-            }
-        }),
-        ("HallFrame", {
-            if !state.items.items_found.contains(&ElectricalFuse1) {
-                || {
-                    actions![
-                        set_current_text(
-                            r#"Un collier de nouilles, mais en dessin.
-                            Tiens, il y a quelque-chose de cache dessous..."#
-                        ),
-                        add_item_to_inventory(ElectricalFuse1)
-                    ]
-                }
-            } else {
-                || {
-                    actions![set_current_text(
-                        "Toujours le collier de nouilles, toujours en dessin."
-                    )]
-                }
-            }
-        }),
+        find_object!(
+            state,
+            "TreeOfHat",
+            Strip1,
+            r#"On dirait que ces chapeaux sont là depuis une éternité. Intrigant…
+            J'en prendrais bien un mais on n'est pas le 2 mai, ça porte malheur.
+            Ah tiens, une bandelette de papier ?"#,
+            r#"On dirait que ces chapeaux sont là depuis une éternité. Intrigant…
+            J'en prendrais bien un mais on n'est pas le 2 mai, ça porte malheur."#
+        ),
+        find_object!(
+            state,
+            "HallFrame",
+            ElectricalFuse1,
+            r#"Un collier de nouilles, mais en dessin.
+            Tiens, il y a quelque-chose de cache dessous..."#,
+            "Toujours le collier de nouilles, toujours en dessin."
+        ),
         ("toElectricalPanel", {
             if state.house.is_light_on {
                 || {

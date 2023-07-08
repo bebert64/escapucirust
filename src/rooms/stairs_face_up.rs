@@ -1,6 +1,6 @@
 use crate::{
     items::{ItemFamily, ItemId::*},
-    rooms::Rooms::*,
+    rooms::{display_element_if, Rooms::*},
     store::{
         actions,
         house::{place_board_on_hole, set_current_room},
@@ -65,25 +65,7 @@ super::generate_room!(
             );
         }
         use_effect_with_deps(
-            if state.house.is_board_on_hole {
-                |_: &bool| {
-                    let board = gloo::utils::document()
-                        .get_element_by_id("Board")
-                        .expect("Board not found in svg");
-                    board
-                        .set_attribute("class", "show")
-                        .expect("Problem setting board's attribute");
-                }
-            } else {
-                |_: &bool| {
-                    let board = gloo::utils::document()
-                        .get_element_by_id("Board")
-                        .expect("Board not found in svg");
-                    board
-                        .set_attribute("class", "hidden")
-                        .expect("Problem setting board's attribute");
-                }
-            },
+            display_element_if!(is_board_on_hole, "Board"),
             is_board_on_hole,
         );
     }

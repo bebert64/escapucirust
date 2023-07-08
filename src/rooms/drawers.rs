@@ -1,4 +1,4 @@
-use super::{add_on_click_listener, create_listener_from_callback};
+use super::{add_onclick_listener, create_listener_from_callback};
 
 use crate::{
     items::ItemId::*,
@@ -64,7 +64,7 @@ pub(crate) fn html() -> Html {
     // Navigation
     {
         let state = state.clone();
-        add_on_click_listener!(
+        add_onclick_listener!(
             [("toKitchenFaceDown", move |_| state
                 .dispatch(actions![set_current_room(KitchenFaceDown)]))],
             effect,
