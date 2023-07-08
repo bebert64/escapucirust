@@ -1,8 +1,8 @@
 pub(crate) mod dining_room_face_up;
-pub(crate) mod door_room_gui1;
-pub(crate) mod door_room_mart1;
-pub(crate) mod door_room_rom1;
-pub(crate) mod door_room_tiph1;
+pub(crate) mod door_gui1;
+pub(crate) mod door_mart1;
+pub(crate) mod door_rom1;
+pub(crate) mod door_tiph1;
 pub(crate) mod drawers;
 pub(crate) mod electrical_panel;
 pub(crate) mod first_floor_face_down;
@@ -51,8 +51,8 @@ pub(crate) enum Rooms {
     RoomTiph1,
     RoomRom1,
     StairsFaceUp,
-    DoorRoomGui1,
-    DoorRoomMart1,
-    DoorRoomRom1,
-    DoorRoomTiph1,
+    DoorGui1,
+    DoorMart1,
+    DoorRom1,
+    DoorTiph1,
 }

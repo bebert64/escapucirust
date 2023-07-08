@@ -33,7 +33,7 @@ impl Default for GlobalState {
                 are_drawers_open: true,
                 is_door_to_room_gui1_open: true,
                 is_door_to_room_mart1_open: true,
-                is_door_to_room_rom1_open: true,
+                is_room_rom1_open: false,
                 is_door_to_room_tiph1_open: true,
                 fuses_placed_on_electrical_panel: HashSet::new(),
             },

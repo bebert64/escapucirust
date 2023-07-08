@@ -25,10 +25,10 @@ pub(crate) fn html() -> Html {
         RoomTiph1 => html! {<room_tiph1::Room />},
         RoomRom1 => html! {<room_rom1::Room />},
         StairsFaceUp => html! {<stairs_face_up::Room />},
-        DoorRoomGui1 => html! {<door_room_gui1::Room />},
-        DoorRoomMart1 => html! {<door_room_mart1::Room />},
-        DoorRoomRom1 => html! {<door_room_rom1::Room />},
-        DoorRoomTiph1 => html! {<door_room_tiph1::Room />},
+        DoorGui1 => html! {<door_gui1::Room />},
+        DoorMart1 => html! {<door_mart1::Room />},
+        DoorRom1 => html! {<door_rom1::Room />},
+        DoorTiph1 => html! {<door_tiph1::Room />},
     };
     html! {
         <div class="board_Room">

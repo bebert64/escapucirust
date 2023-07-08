@@ -36,7 +36,7 @@ super::generate_room!(
             if state.house.is_door_to_room_gui1_open {
                 || actions![set_current_room(RoomGui1)]
             } else {
-                || actions![set_current_room(DoorRoomGui1)]
+                || actions![set_current_room(DoorGui1)]
             }
         ),
         (
@@ -44,15 +44,15 @@ super::generate_room!(
             if state.house.is_door_to_room_mart1_open {
                 || actions![set_current_room(RoomMart1)]
             } else {
-                || actions![set_current_room(DoorRoomMart1)]
+                || actions![set_current_room(DoorMart1)]
             }
         ),
         (
             "toRoomRom1",
-            if state.house.is_door_to_room_rom1_open {
+            if state.house.is_room_rom1_open {
                 || actions![set_current_room(RoomRom1)]
             } else {
-                || actions![set_current_room(DoorRoomRom1)]
+                || actions![set_current_room(DoorRom1)]
             }
         ),
         (
@@ -60,7 +60,7 @@ super::generate_room!(
             if state.house.is_door_to_room_tiph1_open {
                 || actions![set_current_room(RoomTiph1)]
             } else {
-                || actions![set_current_room(DoorRoomTiph1)]
+                || actions![set_current_room(DoorTiph1)]
             }
         ),
     ],

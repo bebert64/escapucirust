@@ -14,7 +14,7 @@ pub(crate) struct HouseState {
     pub(crate) is_board_on_hole: bool,
     pub(crate) is_door_to_room_gui1_open: bool,
     pub(crate) is_door_to_room_mart1_open: bool,
-    pub(crate) is_door_to_room_rom1_open: bool,
+    pub(crate) is_room_rom1_open: bool,
     pub(crate) is_door_to_room_tiph1_open: bool,
     pub(crate) are_drawers_open: bool,
 }
@@ -27,6 +27,7 @@ pub(crate) enum HouseStateAction {
     PlaceFuse(ItemId),
     PlaceBoardOnHole,
     OpenDrawers,
+    OpenDoorRom1,
 }
 
 pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseState) {
@@ -40,6 +41,7 @@ pub(super) fn reduce_house_state(action: HouseStateAction, state: &mut HouseStat
         }
         PlaceBoardOnHole => state.is_board_on_hole = true,
         OpenDrawers => state.are_drawers_open = true,
+        OpenDoorRom1 => state.is_room_rom1_open = true,
     };
 }
 
@@ -65,4 +67,8 @@ pub(crate) fn place_board_on_hole() -> GlobalStateAction {
 
 pub(crate) fn open_drawers() -> GlobalStateAction {
     GlobalStateAction::SetHouseState(HouseStateAction::OpenDrawers)
+}
+
+pub(crate) fn open_door_rom1() -> GlobalStateAction {
+    GlobalStateAction::SetHouseState(HouseStateAction::OpenDoorRom1)
 }

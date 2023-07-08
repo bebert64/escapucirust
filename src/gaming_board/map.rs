@@ -26,10 +26,10 @@ pub(crate) fn html() -> Html {
         RoomTiph1 => (first_floor_svg, "RoomTiph1"),
         RoomRom1 => (first_floor_svg, "RoomRom1"),
         StairsFaceUp => (ground_floor_svg, "Stairs"),
-        DoorRoomGui1 => (first_floor_svg, "FirstFloor"),
-        DoorRoomMart1 => (first_floor_svg, "FirstFloor"),
-        DoorRoomRom1 => (first_floor_svg, "FirstFloor"),
-        DoorRoomTiph1 => (first_floor_svg, "FirstFloor"),
+        DoorGui1 => (first_floor_svg, "FirstFloor"),
+        DoorMart1 => (first_floor_svg, "FirstFloor"),
+        DoorRom1 => (first_floor_svg, "FirstFloor"),
+        DoorTiph1 => (first_floor_svg, "FirstFloor"),
     };
     let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(svg_str));
     use_effect(move || {

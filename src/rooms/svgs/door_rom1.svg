@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="door_room_rom1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.914906"
+     inkscape:cx="277.07765"
+     inkscape:cy="563.44586"
+     inkscape:window-width="2548"
+     inkscape:window-height="1396"
+     inkscape:window-x="2564"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="208.93727"
+       y="142.8709"
+       width="360.5068"
+       height="93.999661"
+       id="rect5681" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#8a6308;stroke-width:0.264583;fill-opacity:1"
+       id="rect111"
+       width="179.02103"
+       height="271.59613"
+       x="17.603706"
+       y="13.996653" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text5679"
+       style="white-space:pre;shape-inside:url(#rect5681);display:inline;fill:#8a6308;fill-opacity:1"><tspan
+         x="208.9375"
+         y="153.48828"
+         id="tspan9755">
+</tspan><tspan
+         x="208.9375"
+         y="168.48828"
+         id="tspan9757">         
+</tspan><tspan
+         x="208.9375"
+         y="201.18359"
+         id="tspan9761">            <tspan
+   style="font-size:32px;-inkscape-font-specification:'sans-serif, Normal';fill:#000000"
+   id="tspan9759">Porte Romain</tspan>
+</tspan><tspan
+         x="208.9375"
+         y="223.48828"
+         id="tspan9763">         
+</tspan><tspan
+         x="208.9375"
+         y="238.48828"
+         id="tspan9765">      </tspan></text>
+    <rect
+       style="display:inline"
+       id="toFirstFloorFaceDown"
+       width="179.13901"
+       height="20.643467"
+       x="17.515308"
+       y="265.50342" />
+    <rect
+       style="fill:#cac74f;fill-opacity:1;stroke-width:0.287543"
+       id="InputZone"
+       width="145.89529"
+       height="42.164146"
+       x="35.625031"
+       y="107.44373" />
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624"
+       width="14.482183"
+       height="27.771168"
+       x="41.142975"
+       y="112.87215" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 48.366242,87.776337 -9.730046,19.097713 14.503928,-1.18723 z"
+       id="path7626" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 50.563731,168.68687 -13.359372,-17.48604 19.91392,1.08704 z"
+       id="path7626-3" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="43.769421"
+       y="128.17615"
+       id="Text0"><tspan
+         sodipodi:role="line"
+         id="tspan9344"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="43.769421"
+         y="128.17615">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-5"
+       width="14.482183"
+       height="27.771168"
+       x="60.265396"
+       y="112.40992" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 67.488663,87.314104 -9.730046,19.097716 14.503928,-1.18723 z"
+       id="path7626-0" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="M 69.686152,168.22464 56.32678,150.7386 76.2407,151.82564 Z"
+       id="path7626-3-3" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="62.891838"
+       y="127.71391"
+       id="Text1"><tspan
+         sodipodi:role="line"
+         id="tspan9344-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="62.891838"
+         y="127.71391">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-0"
+       width="14.482183"
+       height="27.771168"
+       x="80.286568"
+       y="112.69495" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 87.509831,87.599134 -9.730046,19.097716 14.503929,-1.18723 z"
+       id="path7626-6" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 89.70732,168.50967 -13.359372,-17.48604 19.913916,1.08704 z"
+       id="path7626-3-32" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="82.91301"
+       y="127.99895"
+       id="Text2"><tspan
+         sodipodi:role="line"
+         id="tspan9344-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="82.91301"
+         y="127.99895">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-1"
+       width="14.482183"
+       height="27.771168"
+       x="98.665207"
+       y="112.70147" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 105.88848,87.605647 -9.730046,19.097713 14.503926,-1.18723 z"
+       id="path7626-5" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 108.08597,168.51618 -13.359376,-17.48604 19.913926,1.08704 z"
+       id="path7626-3-5" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="101.29166"
+       y="128.00546"
+       id="Text3"><tspan
+         sodipodi:role="line"
+         id="tspan9344-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="101.29166"
+         y="128.00546">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-6"
+       width="14.482183"
+       height="27.771168"
+       x="118.76488"
+       y="111.72278" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 125.98815,86.626959 -9.73004,19.097711 14.50392,-1.18723 z"
+       id="ButtonUp4" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 130.01964,166.43708 -13.35937,-17.48604 19.91392,1.08704 z"
+       id="ButtonDown4" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="121.39133"
+       y="127.02676"
+       id="Text4"><tspan
+         sodipodi:role="line"
+         id="tspan9344-74"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="121.39133"
+         y="127.02676">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-52"
+       width="14.482183"
+       height="27.771168"
+       x="139.8636"
+       y="113.07819" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 147.08687,87.982389 -9.73004,19.097711 14.50392,-1.18723 z"
+       id="ButtonUp5" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 149.28436,168.89292 -13.35937,-17.48604 19.91392,1.08704 z"
+       id="ButtonDown5" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="142.49005"
+       y="128.38219"
+       id="Text5"><tspan
+         sodipodi:role="line"
+         id="tspan9344-3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="142.49005"
+         y="128.38219">A</tspan></text>
+    <rect
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       id="rect3624-07"
+       width="14.482183"
+       height="27.771168"
+       x="161.72371"
+       y="111.58656" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
+       d="m 168.94698,86.490748 -9.73005,19.097712 14.50393,-1.18723 z"
+       id="ButtonUp6" />
+    <path
+       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
+       d="m 171.14447,167.40128 -13.35938,-17.48604 19.91392,1.08704 z"
+       id="ButtonDown6" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
+       x="164.35016"
+       y="126.89056"
+       id="Text6"><tspan
+         sodipodi:role="line"
+         id="tspan9344-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
+         x="164.35016"
+         y="126.89056">A</tspan></text>
+  </g>
+</svg>
