@@ -2,7 +2,10 @@ use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
     store::{
-        actions, house::set_current_room, items::add_item_to_inventory, narration::set_current_text,
+        actions,
+        house::set_current_room,
+        items::find_object,
+        narration::{set_current_text, simple_description},
     },
 };
 
@@ -39,62 +42,54 @@ super::generate_room!(
                 }
             }
         ),
-        ("BookShelf1", || actions![set_current_text(
-            "De vieux livres de médecine tout écornés."
-        )]),
-        ("BookShelf2", || actions![set_current_text(
+        simple_description!("BookShelf1", "De vieux livres de médecine tout écornés."),
+        simple_description!(
+            "BookShelf2",
             "De vieux livres de psychologie, feuilletés par endroits."
-        )]),
-        ("BookShelf3", || {
-            actions![
-                set_current_text("La communication pour les nuls jamais ouvert, on dirait"),
-                add_item_to_inventory(ElectricalFuse3)
-            ]
-        }),
-        ("BookShelf4", || {
-            actions![
-                set_current_text(
-                    r#"La cuisine vegan pour les nuls encore dans son emballage. 
-                    Quelqu'un a dessiné une petite tête de mort dessus. Sympa."#
-                ),
-                add_item_to_inventory(ElectricalFuse4)
-            ]
-        }),
-        ("BookShelf5", || actions![set_current_text(
+        ),
+        find_object!(
+            state,
+            "BookShelf3",
+            ElectricalFuse3,
+            r#"La communication pour les nuls jamais ouvert, on dirait.
+                Mais que vois-je ? Un fusible caché dedans ?"#,
+            "La communication pour les nuls jamais ouvert, on dirait"
+        ),
+        find_object!(
+            state,
+            "BookShelf4",
+            ElectricalFuse4,
+            r#"La cuisine vegan pour les nuls encore dans son emballage. 
+                Quelqu'un a dessiné une petite tête de mort dessus. Sympa.
+                Mais que vois-je ? Un fusible caché dedans ?"#,
+            r#"La cuisine vegan pour les nuls encore dans son emballage. 
+                Quelqu'un a dessiné une petite tête de mort dessus. Sympa."#
+        ),
+        simple_description!(
+            "BookShelf5",
             r#""Une vague pour Manu" ? Jamais entendu parler mais il y est 14 fois...
             Ca doit etre drolement bien, ou nul."#
-        )]),
-        (
-            "Boat1",
-            if !state.items.items_found.contains(&ElectricalFuse2) {
-                || {
-                    actions![
-                        set_current_text(
-                            r#"Une maquette de bateau, un peu fragile.
-                            Tiens, il y a quelque-chose cache la dessous..."#
-                        ),
-                        add_item_to_inventory(ElectricalFuse2)
-                    ]
-                }
-            } else {
-                || {
-                    actions![set_current_text(
-                        "Oups, le mât est cassé... Cela reste beau quand meme. J'espère..."
-                    )]
-                }
-            }
         ),
-        ("Boat2", || actions![set_current_text(
+        find_object!(
+            state,
+            "Boat1",
+            ElectricalFuse2,
+            r#"Une maquette de bateau, un peu fragile.
+                Tiens, il y a quelque-chose cache la dessous..."#,
+            "Oups, le mât est cassé... Cela reste beau quand meme. J'espère..."
+        ),
+        simple_description!(
+            "Boat2",
             "C'est un fameux trois mâts. Il y a écrit 'Uyuni' ."
-        )]),
-        ("Frame1", || actions![set_current_text(
-            "n cadre. On n'est pas obligés de faire des blagues à chaque fois, si ?"
-        )]),
-        ("Frame2", || actions![set_current_text(
-            "Non mais le goût de gens qui vivaient ici..."
-        )]),
-        ("PoolTable", || actions![set_current_text(
+        ),
+        simple_description!(
+            "Frame1",
+            "Un cadre. On n'est pas obligés de faire des blagues à chaque fois, si ?"
+        ),
+        simple_description!("Frame2", "Non mais le goût de gens qui vivaient ici..."),
+        simple_description!(
+            "PoolTable",
             "Un vieux billard qui a servi de table d'operation ? Ironique..."
-        )]),
+        ),
     ],
 );

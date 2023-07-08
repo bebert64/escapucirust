@@ -89,3 +89,28 @@ pub(crate) fn add_item_to_inventory(item_id: ItemId) -> GlobalStateAction {
 pub(crate) fn remove_item_from_iventory(item_id: ItemId) -> GlobalStateAction {
     GlobalStateAction::SetItemsState(ItemsStateAction::RemoveItemFromInventory(item_id))
 }
+
+macro_rules! find_object {
+    ($state: ident, $elem_id: expr, $item_id: ident, $text_first_click: expr, $text_next_clicks: expr) => {
+        (
+            $elem_id,
+            if !$state.items.items_found.contains(&$item_id) {
+                || {
+                    crate::store::actions![
+                        crate::store::narration::set_current_text($text_first_click),
+                        crate::store::items::add_item_to_inventory($item_id),
+                    ]
+                }
+            } else {
+                || {
+                    crate::store::actions![
+                        crate::store::narration::set_current_text($text_next_clicks),
+                        crate::store::items::add_item_to_inventory($item_id),
+                    ]
+                }
+            },
+        )
+    };
+}
+
+pub(crate) use find_object;
