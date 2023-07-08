@@ -26,18 +26,14 @@ pub(crate) fn html() -> Html {
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
     let fuses_displayed = use_state(|| {
         let mut set = HashMap::from([(ElectricalFuse5, false), (ElectricalFuse6, false)]);
-        state
-            .house
-            .fuses_placed_on_electrical_panel
-            .iter()
-            .for_each(|&item_id| {
-                set.insert(item_id, false);
-            });
+        state.house.fuses_placed.iter().for_each(|&item_id| {
+            set.insert(item_id, false);
+        });
         set
     });
 
     // Set initial text
-    let is_panel_ready = state.house.fuses_placed_on_electrical_panel.len() == 4;
+    let is_panel_ready = state.house.fuses_placed.len() == 4;
     use_effect_with_deps(
         {
             let state = state.clone();
@@ -54,7 +50,7 @@ pub(crate) fn html() -> Html {
         is_panel_ready,
     );
 
-    // Display and hide fuses based on local state
+    // Display and hide fuses based on global and local state
     {
         let state = state.clone();
         fn set_class(fuse: &ItemId, is_on: bool, class: &str) {

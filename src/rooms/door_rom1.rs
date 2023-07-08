@@ -1,9 +1,11 @@
 use super::{add_on_click_listener, create_listener, Rooms::*};
 
 use crate::{
+    items::ItemId::*,
     store::{
         actions,
         house::{open_door_rom1, set_current_room},
+        items::{add_item_to_inventory, remove_item_from_iventory},
         narration::set_current_text,
     },
     GlobalState,
@@ -66,7 +68,12 @@ pub(crate) fn html() -> Html {
                 let state = state.clone();
                 move |code_displayed: &UseStateHandle<[i32; 7]>| {
                     if current_code == "TNEPRES" {
-                        state.dispatch(actions![set_current_room(RoomRom1), open_door_rom1()]);
+                        state.dispatch(actions![
+                            set_current_room(RoomRom1),
+                            open_door_rom1(),
+                            add_item_to_inventory(NoteDoorRom1),
+                            remove_item_from_iventory(NoteDoorRom1),
+                        ]);
                     } else {
                         for i in 0..7 {
                             set_text(i, code_displayed.get(i).unwrap())

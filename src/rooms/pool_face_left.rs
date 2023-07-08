@@ -86,7 +86,13 @@ super::generate_room!(
             "Frame1",
             "Un cadre. On n'est pas obligés de faire des blagues à chaque fois, si ?"
         ),
-        simple_description!("Frame2", "Non mais le goût de gens qui vivaient ici..."),
+        find_object!(
+            state,
+            "Frame2",
+            NoteDoorRom1,
+            "Non mais le goût de gens qui vivaient ici... Oh, une note !",
+            "Non mais le goût de gens qui vivaient ici...",
+        ),
         simple_description!(
             "PoolTable",
             "Un vieux billard qui a servi de table d'operation ? Ironique..."

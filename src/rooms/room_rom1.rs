@@ -1,18 +1,25 @@
 use crate::{
+    items::ItemId::*,
     rooms::Rooms::*,
-    store::{actions, narration::set_current_text},
+    store::{actions, items::find_object, narration::simple_description},
 };
 
 super::generate_room!(
     "svgs/room_rom1.svg",
     "Une chambre de mega bo goss",
-    [FirstFloorFaceDown],
+    [FirstFloorFaceDown, BookPile],
     [
-        ("LibraryRom1", || actions![set_current_text(
+        state,
+        simple_description!(
+            "LibraryRom1",
             "Une autre page du journal. Pas utile pour me faire sortir d'ici mais intéressant."
-        )]),
-        ("BookPile", || actions![set_current_text(
-            "Un tas haut et un tabac. Quelle bande de comique..."
-        )])
+        ),
+        find_object!(
+            state,
+            "Jesus",
+            NoteDoudous,
+            "Jésus revient ? Avec une note sur les doudous",
+            "Jésus n'est toujours pas là"
+        )
     ]
 );

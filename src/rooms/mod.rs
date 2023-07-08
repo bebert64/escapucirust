@@ -1,3 +1,4 @@
+pub(crate) mod book_pile;
 pub(crate) mod dining_room_face_up;
 pub(crate) mod door_gui1;
 pub(crate) mod door_mart1;
@@ -50,6 +51,7 @@ pub(crate) enum Rooms {
     RoomMart1,
     RoomTiph1,
     RoomRom1,
+    BookPile,
     StairsFaceUp,
     DoorGui1,
     DoorMart1,

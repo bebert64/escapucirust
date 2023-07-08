@@ -17,10 +17,12 @@ pub(crate) fn html() -> Html {
             Strip => "Une bande, qui ressemble a s'y meprendre a un fusible.",
             Board => "Une planche de bois",
             Key => "Une clé",
-            TeddyBear1 => "Un ours en peluche",
-            TeddyBear2 => "Un ours en peluche",
-            TeddyBear3 => "Un ours en peluche",
-            TeddyBear4 => "Un ours en peluche",
+            Doudou1 => "Un ours en peluche",
+            Doudou2 => "Un ours en peluche",
+            Doudou3 => "Un ours en peluche",
+            Doudou4 => "Un ours en peluche",
+            NoteDoorRom1 => "Cette note est très mystérieuse",
+            NoteDoudous => "Cette note aussi est très mystérieuse. Que de mystères !",
         })]);
         let on_background_click = {
             let state = state.clone();

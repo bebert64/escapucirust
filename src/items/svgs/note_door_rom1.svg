@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="60.864571mm"
+   height="76.478088mm"
+   viewBox="0 0 60.864571 76.478088"
+   version="1.1"
+   id="svg9770"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="note_door_rom1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview9772"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.914906"
+     inkscape:cx="290.19375"
+     inkscape:cy="512.07446"
+     inkscape:window-width="2548"
+     inkscape:window-height="1396"
+     inkscape:window-x="2564"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs9767">
+    <rect
+       x="80.392159"
+       y="61.577923"
+       width="223.8287"
+       height="792.078"
+       id="rect9893" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-18.529316,-13.236924)">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text9891"
+       style="font-size:37.3333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';white-space:pre;shape-inside:url(#rect9893);fill:#000000;stroke-width:1.00157"><tspan
+         x="80.392578"
+         y="94.609347"
+         id="tspan9924">Le code de </tspan><tspan
+         x="80.392578"
+         y="141.27597"
+         id="tspan9926">la porte de </tspan><tspan
+         x="80.392578"
+         y="187.9426"
+         id="tspan9928">Romain
+</tspan><tspan
+         x="80.392578"
+         y="234.60922"
+         id="tspan9930">est </tspan><tspan
+         x="80.392578"
+         y="281.27585"
+         id="tspan9932">TNEPRES</tspan></text>
+  </g>
+</svg>

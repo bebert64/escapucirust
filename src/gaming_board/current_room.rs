@@ -29,6 +29,7 @@ pub(crate) fn html() -> Html {
         DoorMart1 => html! {<door_mart1::Room />},
         DoorRom1 => html! {<door_rom1::Room />},
         DoorTiph1 => html! {<door_tiph1::Room />},
+        BookPile => html! {<book_pile::Room />},
     };
     html! {
         <div class="board_Room">

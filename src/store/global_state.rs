@@ -25,7 +25,7 @@ impl Default for GlobalState {
         GlobalState {
             game_status: GameStatus::Playing,
             house: HouseState {
-                current_room: Rooms::FirstFloorFaceDown,
+                current_room: Rooms::BookPile,
                 is_light_on: true,
                 is_table_cut: true,
                 is_handle_on_exit_door: true,
@@ -35,13 +35,18 @@ impl Default for GlobalState {
                 is_door_to_room_mart1_open: true,
                 is_room_rom1_open: false,
                 is_door_to_room_tiph1_open: true,
-                fuses_placed_on_electrical_panel: HashSet::new(),
+                fuses_placed: HashSet::new(),
+                doudous_placed: HashSet::new(),
             },
             items: ItemsState {
                 family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::from([crate::items::ItemId::Key]),
+                items_in_inventory: HashSet::from([
+                    crate::items::ItemId::Key,
+                    crate::items::ItemId::Doudou1,
+                    crate::items::ItemId::Doudou4,
+                ]),
             },
             current_text: "Initial text",
         }

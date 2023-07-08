@@ -91,7 +91,7 @@ pub(crate) fn remove_item_from_iventory(item_id: ItemId) -> GlobalStateAction {
 }
 
 macro_rules! find_object {
-    ($state: ident, $elem_id: expr, $item_id: ident, $text_first_click: expr, $text_next_clicks: expr) => {
+    ($state: ident, $elem_id: expr, $item_id: ident, $text_first_click: expr, $text_next_clicks: expr $(,)?) => {
         (
             $elem_id,
             if !$state.items.items_found.contains(&$item_id) {

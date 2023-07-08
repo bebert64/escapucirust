@@ -17,11 +17,11 @@ super::generate_room!(
         state,
         (
             "Drawer1",
-            if !state.items.items_found.contains(&TeddyBear1) {
+            if !state.items.items_found.contains(&Doudou1) {
                 || {
                     actions![
                         set_current_text("Ah une peluche !"),
-                        add_item_to_inventory(TeddyBear1)
+                        add_item_to_inventory(Doudou1)
                     ]
                 }
             } else {

@@ -7,13 +7,15 @@ use {lazy_static::lazy_static, paste::paste, yew::prelude::*};
 generate_items! {
     [ElectricalFuse, 1, 2, 3, 4, 5, 6];
     [Strip, 1, 2, 3, 4, 5, 6, 7];
-    TeddyBear1;
-    TeddyBear2;
-    TeddyBear3;
-    TeddyBear4;
+    Doudou1;
+    Doudou2;
+    Doudou3;
+    Doudou4;
     Saw;
     Board;
     Key;
+    NoteDoorRom1;
+    NoteDoudous;
 }
 
 #[derive(Properties, PartialEq)]
@@ -33,10 +35,12 @@ pub(crate) fn html(props: &ItemProps) -> Html {
         Strip => include_str!("svgs/strip.svg"),
         Board => include_str!("svgs/board.svg"),
         Key => include_str!("svgs/key.svg"),
-        TeddyBear1 => include_str!("svgs/teddy_bear1.svg"),
-        TeddyBear2 => include_str!("svgs/teddy_bear2.svg"),
-        TeddyBear3 => include_str!("svgs/teddy_bear3.svg"),
-        TeddyBear4 => include_str!("svgs/teddy_bear4.svg"),
+        Doudou1 => include_str!("svgs/doudou1.svg"),
+        Doudou2 => include_str!("svgs/doudou2.svg"),
+        Doudou3 => include_str!("svgs/doudou3.svg"),
+        Doudou4 => include_str!("svgs/doudou4.svg"),
+        NoteDoorRom1 => include_str!("svgs/note_door_rom1.svg"),
+        NoteDoudous => include_str!("svgs/note_doudous.svg"),
     };
     let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(svg_str));
     html! {
