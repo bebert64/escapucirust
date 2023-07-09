@@ -1,13 +1,21 @@
-use crate::{rooms::Rooms::*, store::narration::simple_description};
+use crate::{
+    items::ItemId::*,
+    rooms::Rooms::*,
+    store::{items::find_object, narration::simple_description},
+};
 
 super::generate_room!(
     "svgs/living_room_face_right.svg",
     "Ce grand salon est vraiment vide",
     [DiningRoomFaceUp, PoolFaceDown, LivingRoomFaceUp],
     [
+        state,
         simple_description!("Library", "Une vieille bibliothèque."),
-        simple_description!(
+        find_object!(
+            state,
             "Chimney",
+            Doudou3,
+            r#"Un doudou est caché parmi les cendres. Il est en parfait état, c'est incroyable."#,
             r#"un message gravé dans la pierre ... 'Seul un scout peut allumer cette cheminée'. Ok...
             "Quelques restes de prospectus à moitié brulés : mangez cinq fruits et légumes par jour... Ok."#
         ),

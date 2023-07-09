@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="door_room_rom1.svg"
+   sodipodi:docname="door_rom1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,12 +25,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.914906"
-     inkscape:cx="277.07765"
-     inkscape:cy="563.44586"
+     inkscape:cx="239.91536"
+     inkscape:cy="564.53887"
      inkscape:window-width="2548"
-     inkscape:window-height="1396"
+     inkscape:window-height="1380"
      inkscape:window-x="2564"
-     inkscape:window-y="36"
+     inkscape:window-y="54"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -60,25 +60,25 @@
        style="white-space:pre;shape-inside:url(#rect5681);display:inline;fill:#8a6308;fill-opacity:1"><tspan
          x="208.9375"
          y="153.48828"
-         id="tspan9755">
+         id="tspan23935">
 </tspan><tspan
          x="208.9375"
          y="168.48828"
-         id="tspan9757">         
+         id="tspan23937">         
 </tspan><tspan
          x="208.9375"
          y="201.18359"
-         id="tspan9761">            <tspan
+         id="tspan23941">            <tspan
    style="font-size:32px;-inkscape-font-specification:'sans-serif, Normal';fill:#000000"
-   id="tspan9759">Porte Romain</tspan>
+   id="tspan23939">Porte Rom1</tspan>
 </tspan><tspan
          x="208.9375"
          y="223.48828"
-         id="tspan9763">         
+         id="tspan23943">         
 </tspan><tspan
          x="208.9375"
          y="238.48828"
-         id="tspan9765">      </tspan></text>
+         id="tspan23945">      </tspan></text>
     <rect
        style="display:inline"
        id="toFirstFloorFaceDown"
@@ -124,156 +124,130 @@
        id="rect3624-5"
        width="14.482183"
        height="27.771168"
-       x="60.265396"
-       y="112.40992" />
+       x="64.169769"
+       y="112.48031" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 67.488663,87.314104 -9.730046,19.097716 14.503928,-1.18723 z"
+       d="m 71.393035,87.384496 -9.730046,19.097714 14.503928,-1.18723 z"
        id="path7626-0" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="M 69.686152,168.22464 56.32678,150.7386 76.2407,151.82564 Z"
+       d="m 73.590524,168.29503 -13.359372,-17.48604 19.91392,1.08704 z"
        id="path7626-3-3" />
     <text
        xml:space="preserve"
        style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="62.891838"
-       y="127.71391"
+       x="66.796211"
+       y="127.7843"
        id="Text1"><tspan
          sodipodi:role="line"
          id="tspan9344-1"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="62.891838"
-         y="127.71391">A</tspan></text>
+         x="66.796211"
+         y="127.7843">A</tspan></text>
     <rect
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
        id="rect3624-0"
        width="14.482183"
        height="27.771168"
-       x="80.286568"
-       y="112.69495" />
+       x="86.120674"
+       y="112.05183" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 87.509831,87.599134 -9.730046,19.097716 14.503929,-1.18723 z"
+       d="M 93.343937,86.956025 83.613891,106.05374 98.11782,104.86651 Z"
        id="path7626-6" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="m 89.70732,168.50967 -13.359372,-17.48604 19.913916,1.08704 z"
+       d="m 95.541426,167.86656 -13.359372,-17.48604 19.913916,1.08704 z"
        id="path7626-3-32" />
     <text
        xml:space="preserve"
        style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="82.91301"
-       y="127.99895"
+       x="88.747116"
+       y="127.35583"
        id="Text2"><tspan
          sodipodi:role="line"
          id="tspan9344-6"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="82.91301"
-         y="127.99895">A</tspan></text>
+         x="88.747116"
+         y="127.35583">A</tspan></text>
     <rect
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
        id="rect3624-1"
        width="14.482183"
        height="27.771168"
-       x="98.665207"
+       x="107.68536"
        y="112.70147" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 105.88848,87.605647 -9.730046,19.097713 14.503926,-1.18723 z"
+       d="m 114.90864,87.605647 -9.73005,19.097713 14.50393,-1.18723 z"
        id="path7626-5" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="m 108.08597,168.51618 -13.359376,-17.48604 19.913926,1.08704 z"
+       d="m 117.10613,168.51618 -13.35938,-17.48604 19.91393,1.08704 z"
        id="path7626-3-5" />
     <text
        xml:space="preserve"
        style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="101.29166"
+       x="110.31181"
        y="128.00546"
        id="Text3"><tspan
          sodipodi:role="line"
          id="tspan9344-7"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="101.29166"
+         x="110.31181"
          y="128.00546">A</tspan></text>
     <rect
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
        id="rect3624-6"
        width="14.482183"
        height="27.771168"
-       x="118.76488"
-       y="111.72278" />
+       x="132.5495"
+       y="112.29755" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 125.98815,86.626959 -9.73004,19.097711 14.50392,-1.18723 z"
+       d="m 139.77277,87.201724 -9.73004,19.097716 14.50392,-1.18723 z"
        id="ButtonUp4" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="m 130.01964,166.43708 -13.35937,-17.48604 19.91392,1.08704 z"
+       d="m 143.80426,167.01185 -13.35937,-17.48604 19.91392,1.08704 z"
        id="ButtonDown4" />
     <text
        xml:space="preserve"
        style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="121.39133"
-       y="127.02676"
+       x="135.17595"
+       y="127.60152"
        id="Text4"><tspan
          sodipodi:role="line"
          id="tspan9344-74"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="121.39133"
-         y="127.02676">A</tspan></text>
+         x="135.17595"
+         y="127.60152">A</tspan></text>
     <rect
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
        id="rect3624-52"
        width="14.482183"
        height="27.771168"
-       x="139.8636"
-       y="113.07819" />
+       x="159.70035"
+       y="113.02646" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 147.08687,87.982389 -9.73004,19.097711 14.50392,-1.18723 z"
+       d="m 166.92362,87.930654 -9.73004,19.097716 14.50392,-1.18723 z"
        id="ButtonUp5" />
     <path
        style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="m 149.28436,168.89292 -13.35937,-17.48604 19.91392,1.08704 z"
+       d="m 169.12111,168.84119 -13.35937,-17.48604 19.91392,1.08704 z"
        id="ButtonDown5" />
     <text
        xml:space="preserve"
        style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="142.49005"
-       y="128.38219"
+       x="162.3268"
+       y="128.33046"
        id="Text5"><tspan
          sodipodi:role="line"
          id="tspan9344-3"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="142.49005"
-         y="128.38219">A</tspan></text>
-    <rect
-       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       id="rect3624-07"
-       width="14.482183"
-       height="27.771168"
-       x="161.72371"
-       y="111.58656" />
-    <path
-       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.209343"
-       d="m 168.94698,86.490748 -9.73005,19.097712 14.50393,-1.18723 z"
-       id="ButtonUp6" />
-    <path
-       style="fill:#77ca4f;fill-opacity:1;stroke-width:0.234719"
-       d="m 171.14447,167.40128 -13.35938,-17.48604 19.91392,1.08704 z"
-       id="ButtonDown6" />
-    <text
-       xml:space="preserve"
-       style="font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';fill:#77ca4f;fill-opacity:1;stroke-width:0.264999"
-       x="164.35016"
-       y="126.89056"
-       id="Text6"><tspan
-         sodipodi:role="line"
-         id="tspan9344-8"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.265"
-         x="164.35016"
-         y="126.89056">A</tspan></text>
+         x="162.3268"
+         y="128.33046">A</tspan></text>
   </g>
 </svg>

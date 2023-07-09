@@ -23,6 +23,8 @@ pub(crate) fn html() -> Html {
             Doudou4 => "Un ours en peluche",
             NoteDoorRom1 => "Cette note est très mystérieuse",
             NoteDoudous => "Cette note aussi est très mystérieuse. Que de mystères !",
+            Knight => "Un cavalier blanc, tel le fameux",
+            Handle => "Une poignée de porte en forme de fameux cavalier",
         })]);
         let on_background_click = {
             let state = state.clone();

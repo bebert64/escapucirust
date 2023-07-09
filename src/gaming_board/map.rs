@@ -31,6 +31,8 @@ pub(crate) fn html() -> Html {
         DoorRom1 => (first_floor_svg, "FirstFloor"),
         DoorTiph1 => (first_floor_svg, "FirstFloor"),
         BookPile => (first_floor_svg, "RoomRom1"),
+        StripsPodium => (first_floor_svg, "RoomTiph1"),
+        ChessBoard => (first_floor_svg, "FirstFloor"),
     };
     let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(svg_str));
     use_effect(move || {

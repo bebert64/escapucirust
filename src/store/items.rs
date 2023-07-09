@@ -39,6 +39,7 @@ pub(super) fn reduce_items_state(action: ItemsStateAction, state: &mut ItemsStat
             }
         }
         RemoveItemFromInventory(item_id) => {
+            state.items_found.insert(item_id);
             state.items_in_inventory.remove(&item_id);
         }
     };

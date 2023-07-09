@@ -1,4 +1,5 @@
 pub(crate) mod book_pile;
+pub(crate) mod chess_board;
 pub(crate) mod dining_room_face_up;
 pub(crate) mod door_gui1;
 pub(crate) mod door_mart1;
@@ -21,6 +22,7 @@ pub(crate) mod room_mart1;
 pub(crate) mod room_rom1;
 pub(crate) mod room_tiph1;
 pub(crate) mod stairs_face_up;
+pub(crate) mod strips_podium;
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub(crate) enum Rooms {
@@ -47,6 +49,8 @@ pub(crate) enum Rooms {
     DoorMart1,
     DoorRom1,
     DoorTiph1,
+    StripsPodium,
+    ChessBoard,
 }
 
 macro_rules! generate_room {

@@ -5,7 +5,7 @@ use crate::{
     store::{
         actions,
         house::{open_door_rom1, set_current_room},
-        items::{add_item_to_inventory, remove_item_from_iventory},
+        items::remove_item_from_iventory,
         narration::set_current_text,
     },
     GlobalState,
@@ -19,7 +19,7 @@ pub(crate) fn html() -> Html {
     let svg =
         yew::Html::from_html_unchecked(yew::AttrValue::from(include_str!("svgs/door_rom1.svg")));
     let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
-    let code_displayed = use_state(|| [0, 0, 0, 0, 0, 0, 0]);
+    let code_displayed = use_state(|| [0, 0, 0, 0, 0, 0]);
     let current_code = (*code_displayed)
         .iter()
         .enumerate()
@@ -40,7 +40,7 @@ pub(crate) fn html() -> Html {
             move |_| {
                 state
                     .clone()
-                    .dispatch(actions![set_current_text("Un cadenas à 6 chiffres",)])
+                    .dispatch(actions![set_current_text("Un cadenas à 6 lettres",)])
             }
         },
         state.house.current_room.clone(),
@@ -66,16 +66,15 @@ pub(crate) fn html() -> Html {
         use_effect_with_deps(
             {
                 let state = state.clone();
-                move |code_displayed: &UseStateHandle<[i32; 7]>| {
-                    if current_code == "TNEPRES" {
+                move |code_displayed: &UseStateHandle<[i32; 6]>| {
+                    if current_code == "TNEPRE" {
                         state.dispatch(actions![
                             set_current_room(RoomRom1),
                             open_door_rom1(),
-                            add_item_to_inventory(NoteDoorRom1),
                             remove_item_from_iventory(NoteDoorRom1),
                         ]);
                     } else {
-                        for i in 0..7 {
+                        for i in 0..6 {
                             set_text(i, code_displayed.get(i).unwrap())
                         }
                     }
@@ -91,7 +90,7 @@ pub(crate) fn html() -> Html {
         let code_displayed = code_displayed.clone();
         use_effect(move || {
             let mut listeners: Vec<Option<::gloo_events::EventListener>> = Vec::new();
-            for cell_index in 4..7 {
+            for cell_index in 4..6 {
                 let button_up_id = format!("ButtonUp{cell_index}");
                 create_listener!(room_ref, listeners, button_up_id, {
                     let cell_letters = CELL_LETTERS.get(cell_index).unwrap();
@@ -154,8 +153,7 @@ lazy_static::lazy_static! {
         vec!["N", "S", "V"],
         vec!["E", "S", "V"],
         vec!["P", "S", "V"],
-        vec!["R", "S", "V"],
-        vec!["E", "P", "S", "V"],
-        vec!["T", "S", "V"],
+        vec!["S", "R", "V"],
+        vec!["P", "E", "S", "V"],
     ];
 }

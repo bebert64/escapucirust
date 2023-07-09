@@ -16,6 +16,8 @@ generate_items! {
     Key;
     NoteDoorRom1;
     NoteDoudous;
+    Knight;
+    Handle;
 }
 
 #[derive(Properties, PartialEq)]
@@ -41,6 +43,8 @@ pub(crate) fn html(props: &ItemProps) -> Html {
         Doudou4 => include_str!("svgs/doudou4.svg"),
         NoteDoorRom1 => include_str!("svgs/note_door_rom1.svg"),
         NoteDoudous => include_str!("svgs/note_doudous.svg"),
+        Knight => include_str!("svgs/knight.svg"),
+        Handle => include_str!("svgs/handle.svg"),
     };
     let svg = yew::Html::from_html_unchecked(yew::AttrValue::from(svg_str));
     html! {

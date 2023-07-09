@@ -1,12 +1,17 @@
 use crate::{
     items::ItemId::*,
     rooms::Rooms::*,
-    store::{actions, house::set_current_room, items::find_object, narration::simple_description},
+    store::{
+        actions,
+        house::set_current_room,
+        items::find_object,
+        narration::{set_current_text, simple_description},
+    },
 };
 
 super::generate_room!(
     "svgs/first_floor_face_down.svg",
-    "On dirait un grand espace de jeu mal rangé.",
+    "",
     [StairsFaceUp],
     [
         state,
@@ -18,9 +23,17 @@ super::generate_room!(
             "Un placard. Tiens, encore une de ces bandelettes.",
             "Un placard"
         ),
-        simple_description!(
+        (
             "Box",
-            r#"Un jeu d'échec et une note : "Une seule pièce vous manque et tout est dépeuplé.""#
+            if !state.house.is_door_gui1_open {
+                || actions![set_current_room(ChessBoard)]
+            } else {
+                || {
+                    actions![set_current_text(
+                        "Un jeu d'échec, mais personne pour jouer avec moi..."
+                    )]
+                }
+            }
         ),
         (
             "toRoomGui1",
@@ -55,4 +68,19 @@ super::generate_room!(
             }
         ),
     ],
+    {
+        let display_text_about_knight =
+            !state.house.is_door_mart1_blocked && !state.items.items_found.contains(&Knight);
+        let state = state.clone();
+        use_effect_with_deps(
+            move |display_text_about_knight: &bool| {
+                state.dispatch(actions![set_current_text(if *display_text_about_knight {
+                    "Au moment de mettre ce coup d'épaule, j'ai cru entendre un truc tomber. Probablement pas loin..."
+                } else {
+                    "On dirait un grand espace de jeu mal rangé."
+                })])
+            },
+            display_text_about_knight,
+        )
+    }
 );

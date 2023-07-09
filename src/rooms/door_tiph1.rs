@@ -1,9 +1,11 @@
 use super::{add_onclick_listener, create_listener, Rooms::*};
 
 use crate::{
+    items::ItemId::*,
     store::{
         actions,
         house::{open_door_tiph1, set_current_room},
+        items::remove_item_from_iventory,
         narration::set_current_text,
     },
     GlobalState,
@@ -50,7 +52,11 @@ pub(crate) fn html() -> Html {
             {
                 move |code_displayed: &UseStateHandle<[Color; 4]>| {
                     if **code_displayed == [Green, White, Blue, Pink] {
-                        state.dispatch(actions![set_current_room(RoomTiph1), open_door_tiph1(),]);
+                        state.dispatch(actions![
+                            set_current_room(RoomTiph1),
+                            open_door_tiph1(),
+                            remove_item_from_iventory(NoteDoudous),
+                        ]);
                     } else {
                         for i in 0..4 {
                             set_color(i, code_displayed.get(i).unwrap())

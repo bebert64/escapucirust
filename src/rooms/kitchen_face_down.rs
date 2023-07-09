@@ -54,6 +54,6 @@ super::generate_room!(
             } else {
                 || actions![set_current_room(Drawers)]
             }
-        )
+        ),
     ],
 );

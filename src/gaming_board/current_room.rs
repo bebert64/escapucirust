@@ -30,6 +30,8 @@ pub(crate) fn html() -> Html {
         DoorRom1 => html! {<door_rom1::Room />},
         DoorTiph1 => html! {<door_tiph1::Room />},
         BookPile => html! {<book_pile::Room />},
+        StripsPodium => html! {<strips_podium::Room />},
+        ChessBoard => html! {<chess_board::Room />},
     };
     html! {
         <div class="board_Room">

@@ -90,25 +90,25 @@ pub(crate) fn html() -> Html {
             .family_selected
             .is_some_and(|family| family == ElectricalFuse)
         {
-            let fuse_removed = state
+            let fuse_to_place = *state
                 .items
                 .inventory()
-                .get_mut(&ElectricalFuse)
+                .get(&ElectricalFuse)
                 .expect("If ElectricalFuse is selected, it should be in the inventory")
-                .pop()
+                .first()
                 .expect("No empty vec in inventory");
             let state = state.clone();
             let fuses_displayed = fuses_displayed.clone();
             Callback::from(move |_| {
                 fuses_displayed.set({
                     let mut fuses = (*fuses_displayed).clone();
-                    fuses.insert(fuse_removed, false);
+                    fuses.insert(fuse_to_place, false);
                     fuses
                 });
                 state.dispatch(actions![
                     unselect_family(),
-                    remove_item_from_iventory(fuse_removed),
-                    place_fuse(fuse_removed)
+                    remove_item_from_iventory(fuse_to_place),
+                    place_fuse(fuse_to_place)
                 ]);
             })
         } else {

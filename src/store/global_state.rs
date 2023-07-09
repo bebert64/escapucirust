@@ -23,26 +23,33 @@ pub(crate) struct GlobalState {
 impl Default for GlobalState {
     fn default() -> GlobalState {
         GlobalState {
-            game_status: GameStatus::Playing,
+            game_status: GameStatus::Starting,
             house: HouseState {
-                current_room: Rooms::DoorTiph1,
-                is_light_on: true,
-                is_table_cut: true,
-                is_handle_on_exit_door: true,
-                is_board_on_hole: true,
-                are_drawers_open: true,
-                is_door_gui1_open: true,
-                is_door_mart1_open: true,
+                current_room: Rooms::HallFaceUp,
+                is_light_on: false,
+                is_table_cut: false,
+                is_handle_on_exit_door: false,
+                is_board_on_hole: false,
+                are_drawers_open: false,
+                is_door_gui1_open: false,
+                is_door_mart1_open: false,
                 is_door_rom1_open: false,
                 is_door_tiph1_open: false,
+                is_door_mart1_blocked: true,
+                is_knight_on_chess_board: false,
                 fuses_placed: HashSet::new(),
                 doudous_placed: HashSet::new(),
+                strips_placed: HashSet::new(),
             },
             items: ItemsState {
                 family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::new(),
+                items_in_inventory: HashSet::from([
+                    crate::items::ItemId::Strip1,
+                    crate::items::ItemId::Handle,
+                    crate::items::ItemId::Strip7,
+                ]),
             },
             current_text: "Initial text",
         }
