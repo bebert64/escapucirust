@@ -26,7 +26,7 @@ impl Default for GlobalState {
             game_status: GameStatus::Starting,
             house: HouseState {
                 current_room: Rooms::RoomGui1,
-                is_light_on: false,
+                is_light_on: true,
                 is_table_cut: false,
                 is_handle_on_exit_door: false,
                 is_board_on_hole: false,
