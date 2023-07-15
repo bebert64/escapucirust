@@ -31,7 +31,8 @@ super::generate_room!(
             "Picture",
             Handle,
             r#"Ho, on voit la maison. Il y a beaucoup plus d'autres maisons que sur la photo de 
-            quand je suis arrivé. Et une poignée est planquée derrière le cadre. Une poignée sans 
+            quand je suis arrivé. Il fait gris...
+             Et une poignée est planquée derrière le cadre. Une poignée sans 
             porte. Il me semble avoir vu une porte sans poignée quelque part..."#,
             r#"Ho, on voit la maison. Il y a beaucoup plus d'autres maisons que sur la photo de 
             quand je suis arrivé."#,

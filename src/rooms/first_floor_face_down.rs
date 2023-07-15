@@ -15,7 +15,15 @@ super::generate_room!(
     [StairsFaceUp],
     [
         state,
-        simple_description!("Shoes", "Un drôle de meuble à chaussures."),
+        simple_description!(
+            "Shoes", 
+            "Un drôle de meuble à chaussures."),
+        simple_description!(
+            "Sofa", 
+            "Il y a trop de bordel dessus pour pouvoir m'asseoir"),
+        simple_description!(
+            "Closet", 
+            "Un, Deux, Trois, ... Il n'y a pas moins de 9 Monopoly différents"),
         find_object!(
             state,
             "Closet",

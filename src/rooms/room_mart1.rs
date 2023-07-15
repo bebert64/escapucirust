@@ -17,6 +17,10 @@ super::generate_room!(
             "LibraryMart1",
             "Une autre page du journal. Pas utile pour me faire sortir d'ici mais intéressant."
         ),
+        simple_description!(
+            "Shelf",
+            "Des verres. Dévers ? Dés verts ? Ces énigmes commencent à me retourner le cerveau..."
+        ),
         simple_description!("Window", "Hey, on voit la voiture !"),
         (
             "toFirstFloorFaceDown",

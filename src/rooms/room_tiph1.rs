@@ -19,6 +19,10 @@ super::generate_room!(
             "LibraryTiph1",
             "Une autre page du journal. Pas utile pour me faire sortir d'ici mais intéressant."
         ),
+        simple_description!(
+            "Drawers",
+            "'Comment réaliser un marathon en moins de 2h ?'. Tu peux toujours courir ma grande..."
+        ),
         (
             "PieceOnFloor",
             if state.house.is_door_mart1_blocked {
