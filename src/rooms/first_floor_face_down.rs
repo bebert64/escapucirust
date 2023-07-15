@@ -22,14 +22,15 @@ super::generate_room!(
             "Sofa", 
             "Il y a trop de bordel dessus pour pouvoir m'asseoir"),
         simple_description!(
-            "Closet", 
-            "Un, Deux, Trois, ... Il n'y a pas moins de 9 Monopoly différents"),
+            "Drawers", 
+            "Des casses-têtes. Beaucoup de casses-tête. Non merci... je commence à en avoir ma claque."),
         find_object!(
             state,
             "Closet",
             Strip3,
-            "Un placard. Tiens, encore une de ces bandelettes.",
-            "Un placard"
+            "Un, Deux, Trois, ... Il n'y a pas moins de 9 Monopoly différents.
+            Tiens, encore une de ces bandelettes.",
+            "Un, Deux, Trois, ... Il n'y a pas moins de 9 Monopoly différents"
         ),
         (
             "Box",
