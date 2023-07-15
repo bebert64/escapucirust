@@ -67,7 +67,7 @@ super::generate_room!(
         ),
         simple_description!(
             "PhoneLamp",
-            "C'est un téléhone-lampe ? Ou une lampe-téléphone ?"
+            "C'est un téléphone-lampe ? Ou une lampe-téléphone ?"
         ),
     ],
 );

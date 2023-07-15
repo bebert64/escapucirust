@@ -22,6 +22,10 @@ super::generate_room!(
             "Hatch",
             "C'est déjà bien assez effrayant comme ça... Pourquoi aller voir le grenier ?"
         ),
+        simple_description!(
+            "Chair",
+            "Une chaise aussi petite qu'inconfortable"
+        ),
         find_object!(
             state,
             "Picture",
