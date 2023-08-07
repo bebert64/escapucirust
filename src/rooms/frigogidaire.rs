@@ -15,7 +15,7 @@ super::generate_room!(
         find_object!(
             state,
             "Shelf3",
-            Strip3,
+            Strip4,
             "C'est périmé. Hmmm... Encore une bandelette.",
             "C'est périmé. Hmmm... "
         ),
