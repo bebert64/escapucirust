@@ -21,8 +21,8 @@ super::generate_room!(
             state,
             "Seats2",
             Key,
-            "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici...",
-            "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici... Oh ! Une clef !"
+            "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici... Oh ! Une clef !",
+            "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici..."
         ),
         simple_description!(
             "Sofa1",

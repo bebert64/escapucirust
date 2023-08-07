@@ -23,9 +23,9 @@ pub(crate) struct GlobalState {
 impl Default for GlobalState {
     fn default() -> GlobalState {
         GlobalState {
-            game_status: GameStatus::Starting,
+            game_status: GameStatus::Playing,
             house: HouseState {
-                current_room: Rooms::RoomGui1,
+                current_room: Rooms::HallFaceUp,
                 is_light_on: true,
                 is_table_cut: false,
                 is_handle_on_exit_door: false,
@@ -45,13 +45,9 @@ impl Default for GlobalState {
                 family_opened: None,
                 family_selected: None,
                 items_found: HashSet::new(),
-                items_in_inventory: HashSet::from([
-                    crate::items::ItemId::Strip1,
-                    crate::items::ItemId::Handle,
-                    crate::items::ItemId::Strip7,
-                ]),
+                items_in_inventory: HashSet::new(),
             },
-            current_text: "Initial text",
+            current_text: "",
         }
     }
 }

@@ -6,12 +6,7 @@ use crate::{
 
 super::generate_room!(
     "svgs/hall_face_up.svg",
-    r#"
-    Difficile d'avancer, on n'y voit rien du tout. 
-    Cet endroit ne me dit rien qui vaille, je ne sais pas ce qui traine...
-    Il vaut mieux ne pas trop m'éloigner avant d'avoir remis un peu de lumière.
-    Cherchons.
-    "#,
+    "",
     [HallFaceDown, PoolFaceLeft],
     [
         state,
@@ -45,4 +40,28 @@ super::generate_room!(
             }
         })
     ],
+    {
+        let state = use_context::<UseReducerHandle<GlobalState>>().expect("Context not found");
+        let is_light_on = state.house.is_light_on;
+        {
+            let state = state.clone();
+            use_effect_with_deps(
+                move |_: &bool| {
+                    state.dispatch(actions![set_current_text(
+                        if !state.house.is_light_on {
+                            r#"
+                            Difficile d'avancer, on n'y voit rien du tout. 
+                            Cet endroit ne me dit rien qui vaille, je ne sais pas ce qui traine...
+                            Il vaut mieux ne pas trop m'éloigner avant d'avoir remis un peu de lumière.
+                            Cherchons.
+                            "#
+                        } else {
+                            "La lumière est"
+                        }
+                    )]);
+                },
+                is_light_on,
+            );
+        };
+    }
 );

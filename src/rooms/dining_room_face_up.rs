@@ -21,7 +21,7 @@ super::generate_room!(
         simple_description!(
             "Door",
             r#"Une porte vers l'extérieur. 
-            Dommage que les devs aient eu la flemme de programmer un extérieur."#
+            Dommage que les développeurs aient eu la flemme de programmer un extérieur."#
         ),
         find_object!(
             state,

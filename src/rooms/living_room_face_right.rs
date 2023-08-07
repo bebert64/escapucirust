@@ -19,8 +19,11 @@ super::generate_room!(
             r#"un message gravé dans la pierre ... 'Seul un scout peut allumer cette cheminée'. Ok...
             "Quelques restes de prospectus à moitié brulés : mangez cinq fruits et légumes par jour... Ok."#
         ),
-        simple_description!(
+        find_object!(
+            state,
             "Seats",
+            Key,
+            "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici... Oh ! Une clef !",
             "On est bien là-dessus, mais ça ne va pas me faire sortir d'ici..."
         ),
         simple_description!(
